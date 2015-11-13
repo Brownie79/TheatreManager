@@ -1,5 +1,4 @@
 //Author: Devanshu Bharel
-//small change
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -153,7 +152,7 @@ public class homework2{
         try{
             System.out.println("Creating statement...");
             stmt = conn.createStatement();
-            String sql = "SELECT ssn,name_ FROM Staff2 WHERE hiredBy="+managerSSN;
+            String sql = "SELECT ssn,name_ FROM staff WHERE hiredBy="+managerSSN;
             
             ResultSet rs = stmt.executeQuery(sql);
 
@@ -171,6 +170,52 @@ public class homework2{
                 
                 count++;
             }
+            
+            //Make schedule changes
+            int usr = 0;
+            while(usr > count || usr <= 0){
+                //invailid user count
+                System.out.println("What user # would you like to edit?");
+                usr = input.nextInt(); 
+                
+                if(usr < count &&  usr > 0){
+                    String[] selectedStaff = staff.get(usr); //[name, ssn]
+                    System.out.println("Staff Selected: " + selectedStaff[0]);
+                    System.out.println("Update (u) or Set (s) Schedule: ");
+                    String setUpdateC = input.next();
+                    
+                    if(setUpdateC.equalsIgnoreCase("u")){
+                        //fetch and list all the schedules of that user
+                        //ask for which one needs to be editted
+                        //change that and update the db
+                    } else if (setUpdateC.equalsIgnoreCase("s")) {
+                        //ask for date and time of new schedule
+                        //compare time, position, and theatre to make sure there doesn't exist any exiting job
+                    } else { return; //invalid input }
+ 
+                        
+
+                    
+                    /*
+                    //System.out.println("Fetching schedule...");
+                    
+                    //fetch user schedule
+                    String usrSchedule = "SELECT * FROM schedule WHERE staff="+selectedStaff[1];
+                    ResultSet rs2 = stmt.executeQuery(usrSchedule);
+                    
+                    
+                    while(rs2.next()){
+                        System.out.println("Start: "+rs2.getTimestamp("START_"));
+                        System.out.println("End: "+rs2.getTimestamp("END_"));
+                        System.out.println("Type: "+rs2.getString("TYPE_"));
+                    }
+                    
+                    */
+
+                }
+                
+            }
+            
             
             //System.out.println(staff.get(1)[0]);
             //System.out.println(staff.get(1)[1]);

@@ -1,3 +1,5 @@
+--Wei Mei, Devanshu Bharel, Alex Nicoara
+
 INSERT INTO movie VALUES('movie1','type1', 'movie descrip1');
 INSERT INTO movie VALUES('movie2','type2', 'movie descrip2');
 INSERT INTO movie VALUES('movie3','type3', 'movie descrip3');

@@ -9,11 +9,10 @@ owner_ varchar(32) NOT NULL,
 manager_ varchar(32) NOT NULL ); -- FK to manager.ssn
 
 CREATE TABLE MovieTimes(
-theatre varchar(255) PRIMARY KEY NOT NULL, -- fk to theatre.address
-screen int NOT NULL, --fk to screen.num
+theatre varchar(255) NOT NULL, -- fk to theatre.address
+screen int NOT NULL,
 Movie varchar(255) NOT NULL, -- fk to movie.title
-start_ timestamp NOT NULL,
-end_ timestamp NOT NULL);
+start_ timestamp NOT NULL);
 
 CREATE TABLE Movie(
 title varchar(32) PRIMARY KEY NOT NULL,
@@ -21,7 +20,7 @@ movietype varchar(32),
 description varchar(2000));
 
 CREATE TABLE Star_(
-movie varchar(32) PRIMARY KEY NOT NULL, -- fk to movie.title
+movie varchar(32) NOT NULL, -- fk to movie.title
 name_ varchar(64) NOT NULL);	
 
 CREATE TABLE Director(
@@ -29,17 +28,15 @@ movie varchar(32) PRIMARY KEY NOT NULL, -- fk to movie.title
 name_ varchar(64));
 
 CREATE TABLE Screen(
-theatre varchar(255) PRIMARY KEY NOT NULL, -- FK TO THEATRE.ADDRESS
-screen int UNIQUE NOT NULL);
+theatre varchar(255) NOT NULL, -- FK TO THEATRE.ADDRESS
+screen int NOT NULL,
+cap int NOT NULL);
 
-CREATE TABLE ScreenCap (
-screen int PRIMARY KEY , -- fk to screen.num
-cap int);
 
 CREATE TABLE TheatreReviews(
 id int PRIMARY KEY NOT NULL, 
 theatre varchar(255) NOT NULL, --fk to theatre.address
-Reviewer varchar(64) NOT NULL, --fk to registerinfo.username
+Reviewer varchar(32) NOT NULL, --fk to registerinfo.username
 likes int,
 dislikes int,
 review varchar(2000));
@@ -47,7 +44,7 @@ review varchar(2000));
 CREATE TABLE MovieReviews(
 id_ int PRIMARY KEY NOT NULL,
 movie varchar(32) NOT NULL,			--fk to movie.title
-Reviewer varchar(64) NOT NULL,	--fk to registerinfo.username
+Reviewer varchar(32) NOT NULL,	--fk to registerinfo.username
 likes int,
 dislikes int,
 review varchar(2000));
@@ -89,7 +86,7 @@ points int NOT NULL,
 pointEarned int NOT NULL);
 
 CREATE TABLE MovieHistory(
-username varchar(32) PRIMARY KEY NOT NULL, --	fk to registerinfo.username
+username varchar(32) NOT NULL, --	fk to registerinfo.username
 movie varchar(32) NOT NULL --fk to movie.title
 );
 
@@ -104,7 +101,7 @@ movie varchar(32) NOT NULL,					--fk to movie.title
 content_ varchar(2000) NOT NULL,
 time_ timestamp NOT NULL);
 
-CREATE TABLE MovieThreadResponses(
+CREATE TABLE MovieResponses(
 id_ int PRIMARY KEY NOT NULL,
 threadId int NOT NULL,							-- FK TO movieThread.id
 user_ varchar(32) NOT NULL,					-- fk to registerInfo.username
@@ -155,9 +152,9 @@ phone varchar(10) NOT NULL
 );
 
 CREATE TABLE Schedule(
-staff varchar(9) PRIMARY KEY NOT NULL,	--fk to staff.ssn
-start_ date NOT NULL,
-end_ date NOT NULL,
+staff varchar(9) NOT NULL,	--fk to staff.ssn
+start_ timestamp NOT NULL,
+end_ timestamp NOT NULL,
 type_ varchar(32) NOT NULL,							--fk to position.type
 location_ varchar(255) NOT NULL					--fk to theatre.address
 );
@@ -165,14 +162,22 @@ location_ varchar(255) NOT NULL					--fk to theatre.address
 --
 --Constraints
 
-ALTER TABLE Theatre
-ADD FOREIGN KEY (manager_) 
-REFERENCES manager_(ssn);
+--ALTER TABLE Theatre
+--ADD FOREIGN KEY (manager_) REFERENCES manager_(ssn);
+ALTER TABLE MovieTimes
+ADD PRIMARY KEY (theatre, screen);
+
+ALTER TABLE screen
+ADD PRIMARY KEY (theatre,screen);
+
+ALTER TABLE schedule
+ADD PRIMARY KEY (staff, start_,end_);
+
+ALTER TABLE moviehistory
+ADD PRIMARY KEY(username, movie);
 
 ALTER TABLE MovieTimes
 ADD FOREIGN KEY (theatre) REFERENCES theatre(address);
-ALTER TABLE MovieTimes
-ADD FOREIGN KEY (screen) REFERENCES Screen(screen);
 ALTER TABLE MovieTimes
 ADD FOREIGN KEY (movie) REFERENCES movie(title);
 
@@ -185,8 +190,6 @@ ADD FOREIGN KEY (movie) REFERENCES movie(title);
 ALTER TABLE screen 
 ADD FOREIGN KEY (theatre) REFERENCES theatre(address);
 
-ALTER TABLE screencap
-ADD FOREIGN KEY (screen) REFERENCES screen(screen);
 
 ALTER TABLE TheatreReviews
 ADD FOREIGN KEY (theatre) REFERENCES theatre(address);
@@ -196,7 +199,7 @@ ADD FOREIGN KEY (reviewer) REFERENCES registerInfo(username);
 ALTER TABLE moviereviews
 ADD FOREIGN KEY (movie) REFERENCES movie(title);
 ALTER TABLE moviereviews
-ADD FOREIGN KEY (review) REFERENCES registerInfo(username);
+ADD FOREIGN KEY (reviewer) REFERENCES registerInfo(username);
 
 ALTER TABLE creditcard
 ADD FOREIGN KEY (ccnum) REFERENCES user_(ccnum);

@@ -41,26 +41,22 @@ public class homework2{
             int c = printMenu();
             while(c != -1){
                 switch (c){ 
-                    case 0:
-                        System.out.println("Choice 0");
+                    case 0: // System.out.println("Choice 0");
                         c = printMenu();
                         break;
-                    case 1:
-                        System.out.println("Choice 1");
-                        //case1();
+                    case 1: // System.out.println("Choice 1");
+                        case1();
                         c = 0;
                         break;
-                    case 2:
-                        System.out.println("Choice 2");
+                    case 2: // System.out.println("Choice 2");
                         case2();
                         c = 0;
                         break;
-                    case 3: 
-                        System.out.println("Choice 3");
+                    case 3: // System.out.println("Choice 3");
+                        case3();
                         c = 0;
                         break;
-                    case 4:
-                        System.out.println("Choice 4");
+                    case 4: // System.out.println("Choice 4");
                         c = -1; //quit
                         break;
                     default:
@@ -82,8 +78,6 @@ public class homework2{
             try{ if(conn != null) { conn.close(); } }     catch(SQLException se) { se.printStackTrace(); }
         }//end finally try    		
     }//end main		
-
-
     
     private static int printMenu(){
         int c = 0;
@@ -100,7 +94,79 @@ public class homework2{
     }
     
     private static void case3(){
-    
+        /*
+        6. Write the program that will allow a guest to be registered for the first time. 
+        The program prevents the guest from purchasing a ticket if the guest has not entered 
+        his credit card information or his credit card does not have sufficient funds. 
+        Write the CreditCardCo test object that allows you to test this program.
+        */
+        
+        CreditCardCo ccCompany = new CreditCardCo();
+        
+        System.out.println("Registering New Guest! Please input the email: ");
+        String guestEmail = input.next(); //check to make sure xx@xx.com in webapp
+        
+        System.out.println("What is First Name?: ");
+        String guestFirst = input.next();
+        
+        System.out.println("What is Last Name?: ");
+        String guestLast = input.next();
+        
+        System.out.println("What is your phonenumber?: ");
+        String guestPhoneNum = input.next();
+        
+        System.out.println("What is their CC number?");
+        int guestCCNum = input.nextInt();
+        
+        System.out.println("What location would you like to view the movie at?: ");
+        String theatreLoc = input.next();
+        
+        System.out.println("What is the price of the movie they wish to see?: ");
+        double moviePrice = input.nextDouble();
+        
+        //make sure valid cc card
+        while(ccCompany.getBalance(guestCCNum) == -1){
+            System.out.println("Credit Card Number does not exist with Credit Card Company! ");
+            System.out.println("Renenter CC Num '0' to exit");
+            guestCCNum = input.nextInt();
+            if(guestCCNum == 0){ return; } //exits to menu
+            
+        }
+        
+        //check to make sure they can afford it
+        if(moviePrice > ccCompany.getBalance(guestCCNum)){
+            System.out.println("Insufficient Funds on Credit Card!");
+            System.out.println("You have: $" + ccCompany.getBalance(guestCCNum));
+            System.out.println("You need: $"+ moviePrice);
+            return; //exit to menu
+        }
+        
+        System.out.println("Everything seems to be in order, adding entree and charging your CC..");
+        ccCompany.chargeCard(guestCCNum, moviePrice);
+        String insertGuest = "INSERT INTO user_ VALUES("+
+                "'" + guestEmail + "'," +
+                "'" + guestCCNum + "'," +
+                "'" + guestPhoneNum + "'," +
+                "'" + guestFirst + "'," +
+                "'" + guestLast + "'," +
+                "'guest'"+ //type
+                ")";
+        
+        String insertGuestLoc = "INSERT INTO guestinfo VALUES("+
+                "'" + guestEmail + "',"+
+                "'" + theatreLoc + "'" + ")";
+        
+        try{
+            stmt.executeQuery(insertGuest);
+            stmt.executeQuery(insertGuestLoc);
+            System.out.println("Successfully inserted newguest!");
+            
+        } catch(SQLException se){
+            se.printStackTrace();
+        } catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        }
     }
     
     //works
@@ -360,6 +426,33 @@ public class homework2{
     
 }//end class
 
+
+class CreditCardCo{
+    static Map<Integer, Double> ccDB = new HashMap<Integer,Double>(); //cc num, balance
+
+    public CreditCardCo(){
+        //sample data
+        ccDB.put(110111,45.00);
+        ccDB.put(110222,500.45);
+        ccDB.put(111111,0.00);
+        ccDB.put(005522,10.00);
+    }
+    
+    public double getBalance(int creditCardNum){
+        if(ccDB.containsKey(creditCardNum)){
+            return ccDB.get(creditCardNum);
+        } else {
+            return -1; //credit card number doesn't exist
+        }
+    }
+    
+    public void chargeCard(int cc, double chargeAmount){
+        ccDB.replace(cc, chargeAmount);
+    }
+}
+
+
+//for use with case1()
 class Schedule{
     //holds data for a schedule type object
     
@@ -387,47 +480,3 @@ class Schedule{
     
 }
 
-class CreditCardCo{
-
-}
-    
-
-
-/*
-    public static void test(){
-        Connection conn = null;
-        Statement stmt = null;
-        try{
-            //STEP 2: Register JDBC driver
-            Class.forName(JDBC_DRIVER);
-
-            //STEP 3: Open a connection
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-
-            //STEP 4: Execute a query
-            System.out.println("Creating statement...");
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT * FROM Class";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            //process result ResultSet
-            while(rs.next()){
-                int id = rs.getInt("ID");
-                String title = rs.getString("TITLE");
-                System.out.println("ID: " + id + "  Title: " + title);
-            }
-        } catch(SQLException se){
-        //Handle errors for JDBC
-        se.printStackTrace();
-        } catch(Exception e){
-        //Handle errors for Class.forName
-        e.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try{ if(stmt!=null) { stmt.close(); } }	catch(SQLException se2){}// nothing we can do
-            try{ if(conn!=null) { conn.close(); } }     catch(SQLException se) { se.printStackTrace(); }
-        }//end finally try
-    }
-*/

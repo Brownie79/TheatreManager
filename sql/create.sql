@@ -154,12 +154,12 @@ phone varchar(10) NOT NULL
 );
 
 CREATE TABLE Schedule(
-staff varchar(9) NOT NULL,	--fk to staff.ssn
+ssn varchar(9) NOT NULL,	--fk to staff.ssn
 start_ timestamp NOT NULL,
 end_ timestamp NOT NULL,
 type_ varchar(32) NOT NULL,							--fk to position.type
 location_ varchar(255) NOT NULL,					--fk to theatre.address
-id_ integer NOT NULL,
+id_ number NOT NULL,
 );
 
 --

@@ -3,7 +3,6 @@
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
@@ -93,6 +92,7 @@ public class homework2{
         return input.nextInt();
     }
     
+    //works
     private static void case3(){
         /*
         6. Write the program that will allow a guest to be registered for the first time. 
@@ -225,18 +225,21 @@ public class homework2{
             System.out.println(updateSQL);
             stmt.executeQuery(updateSQL);
             System.out.println("Update Successful!");
+        
+        
+        
+        
+        
         } catch(SQLException se){
             //Handle errors for JDBC 
             se.printStackTrace();
         } catch(Exception e){
             //Handle errors for Class.forName
             e.printStackTrace();
-        } finally {
-            //finally block used to close resources
-        }//end finally try
-    
+        } 
     }
     
+        
     private static void case1(){
         //try catch all?
         //ask for Manager SSN to make sure they control the worker they want to update the schedule for
@@ -256,11 +259,8 @@ public class homework2{
         
         try{
             System.out.println("Creating statement...");
-            //stmt = conn.createStatement();
-            String sql = "SELECT ssn,name_ FROM staff WHERE hiredBy="+managerSSN;
-            
+            String sql = "SELECT ssn,name_ FROM staff WHERE hiredBy="+managerSSN;            
             ResultSet rs = stmt.executeQuery(sql);
-
             Map<Integer, String[]> staff = new HashMap<Integer,String[]>(); //index number, [name,ssn]
 
             //process result ResultSet
@@ -276,101 +276,261 @@ public class homework2{
                 count++;
             }
             
-            //Make schedule changes
-            int usr = 0;
-            while(usr > count || usr <= 0){
-                //invailid user count
-                System.out.println("What user # would you like to edit?");
-                usr = input.nextInt(); 
-                
-                if(usr < count &&  usr > 0){
-                    String[] selectedStaff = staff.get(usr); //[name, ssn]
-                    System.out.println("Staff Selected: " + selectedStaff[0]);
-                    System.out.println("Update (u) or Set (s) Schedule: ");
-                    String setUpdateC = input.next();
-                    
-                    if(setUpdateC.equalsIgnoreCase("u")){
-                        //fetch and list all the schedules of that user
-                        //ask for which one needs to be editted
-                        //change that and update the db
-                        //process result ResultSet
-                        
-                       String selectedSQL = "SELECT * FROM schedule WHERE staff="+selectedStaff[1]; //returns all schedules of selected worker
-                       ResultSet schedules = stmt.executeQuery(selectedSQL);
-                       
-                       ArrayList<Schedule> sArray = new ArrayList();
-                       
-                       //print all schedules to allow user to pick what they want to update
-                       while(schedules.next()){
-                           Timestamp start = schedules.getTimestamp("start_");
-                           Timestamp end = schedules.getTimestamp("end_");
-                           String type = schedules.getString("type_");
-                           String location = schedules.getString("location_");
-                           
-                           Schedule nSchedule = new Schedule(start,end,type,location);
-                           System.out.println(sArray.size()+". "+nSchedule);
-                           sArray.add(nSchedule); //size increments now
-                        }
-                        
-                        if(sArray.size() == 0){
-                            System.out.println("That staff is NOT currently assigned a working time");
-                            return; //return to menu
-                        }
-                        
-                        //else
-                        System.out.println("Which day would  you like to update? (Input the # of the entry)");
-                        int dayChoice = input.nextInt();
-                        Schedule selectedSchedule = sArray.get(dayChoice);
-                        
-                        System.out.println("You selected the following schedule: " + selectedSchedule);
-                        //Start, End, Type, Location
-                        Schedule newSchedule = newSchedule();
-                        
-                        
-                        /*
-                        schedules.absolute(dayChoice); //sets the cursor to that row
-                        
-                        Timestamp start = schedules.getTimestamp("start_");
-                        Timestamp end = schedules.getTimestamp("end_");
-                        String type = schedules.getString("type_");
-                        String location = schedules.getString("location_");
-                        
-                        String startEnd = "Location: " + location+"\n"+
-                                   "\t\tStart: " + start + "\t\tEnd" + end+
-                                   "\t\tType: "+type;
-                        System.out.println("You've Selected This Schedule to Update!" + "\n" + startEnd);
-                        */
-                    } else if (setUpdateC.equalsIgnoreCase("s")) {
-                        //ask for date and time of new schedule
-                        //compare time, position, and theatre to make sure there doesn't exist any exiting job
-                    } else { return; }//invalid input 
- 
-                        
-
-                    
-                    /*
-                    //System.out.println("Fetching schedule...");
-                    
-                    //fetch user schedule
-                    String usrSchedule = "SELECT * FROM schedule WHERE staff="+selectedStaff[1];
-                    ResultSet rs2 = stmt.executeQuery(usrSchedule);
-                    
-                    
-                    while(rs2.next()){
-                        System.out.println("Start: "+rs2.getTimestamp("START_"));
-                        System.out.println("End: "+rs2.getTimestamp("END_"));
-                        System.out.println("Type: "+rs2.getString("TYPE_"));
-                    }
-                    
-                    */
-
-                }
-                
+            if(count == 1) {
+                System.out.println("No workers were hired by you!");
+                return;
             }
             
             
-            //System.out.println(staff.get(1)[0]);
-            //System.out.println(staff.get(1)[1]);
+            //select worker to mess with
+            System.out.println("What user# would you like to edit?");
+            int usr = input.nextInt();
+            
+            if(usr<=0 || usr>count){ 
+                System.out.println("Invalid Input!");
+                return;
+            }
+            
+            //usr selected
+            //ask if update or add new schedule
+            String[] selectedStaff = staff.get(usr); //[name, ssn]
+            System.out.println("Staff Selected: " + selectedStaff[0]);
+            
+            System.out.println("Update(u) or Add(a) or Delete (d) Schedule Changes: ");
+            String choice = input.next();
+            
+            if(choice.equalsIgnoreCase("a")){
+                //new Schedule(selected staff ssn, new start, new end, type, location)
+
+                //start,end,type,location
+                
+                //year,month,date,hour,0,0,0
+                System.out.println("New Start Time(Year|Month|Date|Hour): ");
+                String[] nSArray = input.next().split("|");
+                Timestamp newStart = new Timestamp(
+                        Integer.parseInt(nSArray[0]), //year
+                        Integer.parseInt(nSArray[1]), //month
+                        Integer.parseInt(nSArray[2]), //date
+                        Integer.parseInt(nSArray[3]), //hour
+                        0,0,0); //minute, seconds, nanos
+                
+                
+                //year,month,date,hour,0,0,0
+                System.out.println("New End Time(Year|Month|Date|Hour): ");
+                String[] nEArray = input.next().split("|");
+                Timestamp newEnd = new Timestamp(
+                        Integer.parseInt(nEArray[0]), //year
+                        Integer.parseInt(nEArray[1]), //month
+                        Integer.parseInt(nEArray[2]), //date
+                        Integer.parseInt(nEArray[3]),
+                        0,0,0); //minute, seconds, nanos
+                
+                System.out.println("New Type: ");
+                String newType = input.next();
+                
+                System.out.println("New Location: ");
+                String nLocation = input.next();
+                
+                String getShifts = "SELECT start_,end_ FROM schedule WHERE type='"
+                        +newType+"' AND location='"+nLocation+"'";
+                
+                ResultSet shifts = stmt.executeQuery(getShifts); //gets shifts for that location for that job
+                
+                //check to make sure no conflicts
+                //working with newStart,newEnd Timestamp objects
+                //1. newStart < newEnd
+                
+                if(newStart.after(newEnd) || newStart.equals(newEnd)){
+                    System.out.println("Invalid Start/End Times");
+                    return; //return to menu
+                }
+                
+                //check for the following bounds
+                //2. givenEnd <= newStart < givenStart
+                //3. givenEnd < newStart <= Start
+                
+                while(shifts.next()){
+                    Timestamp givenStart = shifts.getTimestamp("start_");
+                    Timestamp givenEnd = shifts.getTimestamp("end_");
+                    
+                    if
+                    (   
+                        ( //if start within a given bounds
+                            (newStart.after(givenStart) || newStart.equals(givenStart)) &&
+                            (newStart.before(newEnd))
+                        )
+                            || 
+                        ( //if end within a given bounds
+                            (newEnd.after(givenStart)) && 
+                            (newEnd.before(givenEnd) || newEnd.equals(givenEnd))
+                        ) 
+                    ){
+                        System.out.println("There is a scheduling conflict");
+                        return;
+                    }
+                    
+                } //end while
+                
+                //no conflicts encountered
+                //add new shift
+                String addShift = "INSERT INTO schedule VALUES=("+
+                        "'" + selectedStaff[1] + "'" + "," +
+                        newStart + "," +
+                        newEnd + "," +
+                        "'"+newType+"'"+","+
+                        "'"+nLocation+"'"+","+
+                        ")";
+               
+                System.out.println("Adding Shift...");
+                stmt.executeQuery(addShift);
+                System.out.println("Shift Added!");
+                
+            } else if(choice.equalsIgnoreCase("d")) {
+                //print all shifts of worker
+                //ask for selection
+                //delete given row
+                String fetchShifts = "SELECT * FROM schedule WHERE ssn="+selectedStaff[1];
+                ResultSet workerShifts = stmt.executeQuery(fetchShifts);
+                
+                int c = 1;
+                while(workerShifts.next()){
+                    System.out.println(c+". Type: " + workerShifts.getString("type_")+
+                            "\nLocation: " + workerShifts.getString("location_") +
+                            "\nStart: " + workerShifts.getTimestamp("start_")+
+                            "\nEnd: " + workerShifts.getTimestamp("end_"));
+                }
+                
+                System.out.println("Which schedule would you like to drop? (-1) to quit: ");
+                int dropChoice = input.nextInt();
+                if(dropChoice == -1) {return;}
+                
+                //set cursor to that row
+                workerShifts.absolute(dropChoice);
+                String dropStatement = "DELETE FROM schedule WHERE"+
+                        " ssn="     +selectedStaff[1]+
+                        " start_="  +workerShifts.getTimestamp("start_")+
+                        " end_="    +workerShifts.getTimestamp("end_")+
+                        " type_="   +workerShifts.getString("type_")+
+                        " location_="+workerShifts.getString("location_");
+                System.out.println("Deleting row...");
+                stmt.executeQuery(dropStatement);
+                System.out.println("Successfully deleted row!");
+                
+            } else if(choice.equalsIgnoreCase("u")){
+                //print all the results
+                //select which to update
+                //check conflicts, ignore the row that's the same as the update row
+                //if no conflicts, then update row with new start,end times
+                
+                String fetchShifts = "SELECT * FROM schedule WHERE ssn="+selectedStaff[1];
+                ResultSet workerShifts = stmt.executeQuery(fetchShifts);
+                
+                int c = 0;
+                while(workerShifts.next()){
+                    System.out.println(c+". Type: " + workerShifts.getString("type_")+
+                            "\nLocation: " + workerShifts.getString("location_") +
+                            "\nStart: " + workerShifts.getTimestamp("start_")+
+                            "\nEnd: " + workerShifts.getTimestamp("end_"));
+                }
+                
+                System.out.println("Which schedule would you like to update? (-1) to quit: ");
+                int upChoice = input.nextInt();                    
+                
+                if(upChoice == -1){return;}
+                
+                //store selected row
+                workerShifts.absolute(upChoice);
+                //ssn = selectedStaff[1]
+                Timestamp oldStart  = workerShifts.getTimestamp("start_");
+                Timestamp oldEnd    = workerShifts.getTimestamp("end_");
+                String    oldType   = workerShifts.getString("type_");
+                String    oldLoc    = workerShifts.getString("loctation_");
+                
+                System.out.println("Chosen: \n");
+                System.out.println(upChoice+". Type: " + workerShifts.getString("type_")+
+                            "\nLocation: " + workerShifts.getString("location_") +
+                            "\nStart: " + workerShifts.getTimestamp("start_")+
+                            "\nEnd: " + workerShifts.getTimestamp("end_"));
+                
+                //ask for new start,end
+                //year,month,date,hour,0,0,0
+                System.out.println("New Start Time(Year|Month|Date|Hour): ");
+                String[] nSArray = input.next().split("|");
+                Timestamp newStart = new Timestamp(
+                        Integer.parseInt(nSArray[0]), //year
+                        Integer.parseInt(nSArray[1]), //month
+                        Integer.parseInt(nSArray[2]), //date
+                        Integer.parseInt(nSArray[3]), //hour
+                        0,0,0); //minute, seconds, nanos
+                
+                
+                //year,month,date,hour,0,0,0
+                System.out.println("New End Time(Year|Month|Date|Hour): ");
+                String[] nEArray = input.next().split("|");
+                Timestamp newEnd = new Timestamp(
+                        Integer.parseInt(nEArray[0]), //year
+                        Integer.parseInt(nEArray[1]), //month
+                        Integer.parseInt(nEArray[2]), //date
+                        Integer.parseInt(nEArray[3]),
+                        0,0,0); //minute, seconds, nanos
+                
+                //check to make sure start doesn't occus after end
+                if(newStart.after(newEnd) || newStart.equals(newEnd)){
+                    System.out.println("Invalid Start/End Times");
+                    return; //return to menu
+                }
+                
+                //check conflicts
+                workerShifts.absolute(0);
+                
+                while(workerShifts.next()){
+                    Timestamp givenStart = workerShifts.getTimestamp("start_");
+                    Timestamp givenEnd = workerShifts.getTimestamp("end_");
+                    
+                    if  (oldStart.equals(givenStart) &&
+                         oldEnd.equals(givenEnd) &&
+                         oldType.equals(workerShifts.getString("type_")) &&
+                         oldLoc.equals(workerShifts.getString("location_"))
+                        ){} //ignore as this is the same row as selected
+                    
+                    
+                    else if
+                    (   
+                        ( //if start within a given bounds
+                            (newStart.after(givenStart) || newStart.equals(givenStart)) &&
+                            (newStart.before(newEnd))
+                        )
+                            || 
+                        ( //if end within a given bounds
+                            (newEnd.after(givenStart)) && 
+                            (newEnd.before(givenEnd) || newEnd.equals(givenEnd))
+                        ) 
+                    ){
+                        System.out.println("There is a scheduling conflict");
+                        return;
+                    }
+                    
+                } //end while
+                
+                //no scheduling conflict
+                String updateStmt = "UPDATE schedule SET start_="+newStart+
+                        " , end_="+newEnd+" WHERE"+
+                        " ssn="+selectedStaff[1]+
+                        " type='"+oldType+"' ,"+
+                        " location_='"+oldLoc+"' ,"+
+                        " start_="+oldStart+
+                        " end_="+oldEnd;
+                System.out.println("Updating db...");
+                System.out.println(updateStmt);
+                
+                stmt.executeQuery(updateStmt);
+                System.out.println("Sucessfully updated!");     
+                        
+                
+            } else {
+                System.out.println("Bad Input");
+                return;
+            }
             
         } catch(SQLException se){
             //Handle errors for JDBC 
@@ -378,50 +538,8 @@ public class homework2{
         } catch(Exception e){
             //Handle errors for Class.forName
             e.printStackTrace();
-        } finally {
-            //finally block used to close resources
-        }//end finally try
+        } 
         
-    }
-    
-    //for use with case1()
-    static Schedule newSchedule(){
-        //start year,month,date,hour
-        System.out.println("Please Enter in StartTime Year|Month|Date|Hour with '|' seperating the input.");
-        String[] nStart = input.next().split("|");
-                                        //year,month,date,hour,0,0,0 
-        Timestamp start = new Timestamp(
-                Integer.parseInt(nStart[0]), //year
-                Integer.parseInt(nStart[1]), //month
-                Integer.parseInt(nStart[2]), //date
-                Integer.parseInt(nStart[3]), //hour
-                0,0,0 //minute,second,nanos
-        );
-        
-       
-        //end year,month,date,hour
-        System.out.println("Please Enter in EndTime Year|Month|Date|Hour with '|' seperating the input.");
-        String[] nEnd = input.next().split("|");
-                                        //year,month,date,hour,0,0,0 
-        Timestamp end = new Timestamp(
-                Integer.parseInt(nEnd[0]), //year
-                Integer.parseInt(nEnd[1]), //month
-                Integer.parseInt(nEnd[2]), //date
-                Integer.parseInt(nEnd[3]), //hour
-                0,0,0 //minute,second,nanos
-        );
-        
-        
-        //type
-        System.out.println("What position? "); 
-        String type = input.next();
-        
-        //location
-        System.out.println("New Location? ");
-        String location = input.next();
-        
-        Schedule nSchedule = new Schedule(start,end,type,location);
-        return nSchedule;
     }
     
 }//end class
@@ -452,31 +570,4 @@ class CreditCardCo{
 }
 
 
-//for use with case1()
-class Schedule{
-    //holds data for a schedule type object
-    
-    //public String staffSSN;
-    public Timestamp start;
-    public Timestamp end;
-    public String type;
-    public String location;
-    
-    public Schedule(Timestamp s, Timestamp e, String t, String l){
-        //staffSSN = ssn;
-        start = s;
-        end = e;
-        type = t;
-        location = l;
-    }
-    
-    public String toString(){
-        String startEnd = "Location: " + location+"\n"+
-                            "\t\tStart: " + start + "\t\tEnd" + end+
-                            "\t\tType: "+type;
-                
-        return startEnd;
-    }
-    
-}
 

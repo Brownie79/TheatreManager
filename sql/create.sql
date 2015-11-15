@@ -76,7 +76,7 @@ type_ varchar(16) NOT NULL --fk to membertype.type
 
 CREATE TABLE GuestInfo (
 email varchar(255) PRIMARY KEY NOT NULL, 	--FK to user.email
-movie varchar(64) NOT NULL			--fk to movie.title
+theatre varchar(255) NOT NULL			--fk to theatre.address
 );
 
 CREATE TABLE registerInfo(
@@ -212,7 +212,7 @@ ADD FOREIGN KEY (type_) REFERENCES membertype(type_);
 ALTER TABLE guestinfo
 ADD FOREIGN KEY (email) REFERENCES user_(email);
 ALTER TABLE guestinfo 
-ADD FOREIGN KEY (movie) REFERENCES movie(title);
+ADD FOREIGN KEY (theatre) REFERENCES theatre(address);
 
 ALTER TABLE registerinfo 
 ADD FOREIGN KEY (email) REFERENCES user_(email);

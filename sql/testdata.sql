@@ -38,7 +38,6 @@ INSERT INTO creditcard VALUES('2222333344445555',to_date('2017/03/27','yyyy/mm/d
 INSERT INTO creditcard VALUES('1111222233338989',to_date('2018/04/03','yyyy/mm/dd'),'mastercard');
 INSERT INTO creditcard VALUES('1111222233337777',to_date('2020/01/10','yyyy/mm/dd'),'mastercard');
 
-INSERT INTO guestinfo VALUES('jdoe1email', 'movie1');
 
 INSERT INTO registerinfo VALUES('asavage1email', 'asavage1','savagepass','savage home', 25, 100);
 INSERT INTO registerinfo VALUES('jhyneman1email', 'jhyneman1','hynemanpass','hyneman home', 30, 30);
@@ -54,6 +53,8 @@ INSERT INTO moviehistory VALUES('gimahara1', 'movie1');
 
 INSERT INTO theatre VALUES('theatre1', 11122, 2, 'owner1', 'manager1');	
 INSERT INTO theatre VALUES('theatre2', 11133, 5, 'owner2', 'manager2');
+
+INSERT INTO guestinfo VALUES('jdoe1email', 'theatre1');
 
 INSERT INTO screen VALUES('theatre1', 1, 10);
 INSERT INTO screen VALUES('theatre1', 2, 20);

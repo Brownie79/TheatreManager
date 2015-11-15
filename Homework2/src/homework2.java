@@ -35,6 +35,7 @@ public class homework2{
             //STEP 3: Open a connection
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            stmt = conn.createStatement();
             System.out.println("Succesfully Connected!");
             
             int c = printMenu();
@@ -46,11 +47,12 @@ public class homework2{
                         break;
                     case 1:
                         System.out.println("Choice 1");
-                        case1();
+                        //case1();
                         c = 0;
                         break;
                     case 2:
                         System.out.println("Choice 2");
+                        case2();
                         c = 0;
                         break;
                     case 3: 
@@ -76,47 +78,12 @@ public class homework2{
         e.printStackTrace();
         } finally {
             //finally block used to close resources
-            try{ if(stmt!=null) { stmt.close(); } }	catch(SQLException se2){}// nothing we can do
-            try{ if(conn!=null) { conn.close(); } }     catch(SQLException se) { se.printStackTrace(); }
+            try{ if(stmt != null) { stmt.close(); } }     catch(SQLException se) { se.printStackTrace(); }
+            try{ if(conn != null) { conn.close(); } }     catch(SQLException se) { se.printStackTrace(); }
         }//end finally try    		
     }//end main		
 
-    public static void test(){
-        Connection conn = null;
-        Statement stmt = null;
-        try{
-            //STEP 2: Register JDBC driver
-            Class.forName(JDBC_DRIVER);
 
-            //STEP 3: Open a connection
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
-
-            //STEP 4: Execute a query
-            System.out.println("Creating statement...");
-            stmt = conn.createStatement();
-            String sql;
-            sql = "SELECT * FROM Class";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            //process result ResultSet
-            while(rs.next()){
-                int id = rs.getInt("ID");
-                String title = rs.getString("TITLE");
-                System.out.println("ID: " + id + "  Title: " + title);
-            }
-        } catch(SQLException se){
-        //Handle errors for JDBC
-        se.printStackTrace();
-        } catch(Exception e){
-        //Handle errors for Class.forName
-        e.printStackTrace();
-        } finally {
-            //finally block used to close resources
-            try{ if(stmt!=null) { stmt.close(); } }	catch(SQLException se2){}// nothing we can do
-            try{ if(conn!=null) { conn.close(); } }     catch(SQLException se) { se.printStackTrace(); }
-        }//end finally try
-    }
     
     private static int printMenu(){
         int c = 0;
@@ -132,12 +99,75 @@ public class homework2{
         return input.nextInt();
     }
     
-    private static void case2(){
-        //set credit points per review
-        
+    private static void case3(){
+    
     }
     
-    private static void case3(){
+    //works
+    private static void case2(){
+        //check to make sure current user is owner, else error out to menu
+
+        //set credit points per review
+        //fetch the table
+        try{
+            System.out.println("Fetching current award points...");
+            String fetchMemberType = "SELECT * FROM membertype"; //the table
+            ResultSet memberType = stmt.executeQuery(fetchMemberType); //fetches the entire table
+            System.out.println("Fetched!");
+
+            int[] creditPts = new int[4];
+            
+            int c = 0;
+            while(memberType.next()){
+                String mem = memberType.getString("type_");
+                int pts = memberType.getInt("ptsperreview");
+                System.out.println("MemberType: "+mem + "\t\tPoints: "+Integer.toString(pts));
+                creditPts[c] = pts;
+                c++;
+            }
+            
+            System.out.println("Which Member Type would you like to make changes for?\n");
+            String chosenMem = input.next();
+            
+            System.out.println("New Pts Per Review? ");
+            int nPts = input.nextInt();
+            
+            if(chosenMem.equalsIgnoreCase("bronze")){
+                if(nPts > creditPts[1] || nPts > creditPts[2]){
+                    System.out.println("Bronze can't be given more pts than Silver or Gold!");
+                    return;
+                }
+            } else if(chosenMem.equalsIgnoreCase("silver")){
+                if(nPts > creditPts[2] || nPts < creditPts[0]){
+                    System.out.println("Silver can't be given more pts Gold or less than Silver!");
+                    return;
+                }
+            } else if(chosenMem.equalsIgnoreCase("gold")){
+                if(nPts < creditPts[0] || nPts < creditPts[1]){
+                    System.out.println("Gold can't be less than Silver or Bronze");
+                    return;
+                }
+            } else {
+                System.out.println("Member type not found!");
+                return;
+            } //invalid input accounted for
+            
+            
+            //update SQL Table with new pts
+            System.out.println("Updating the database...");
+            String updateSQL = "UPDATE membertype SET ptsperreview=" + nPts + " WHERE type_='"+chosenMem+"'";
+            System.out.println(updateSQL);
+            stmt.executeQuery(updateSQL);
+            System.out.println("Update Successful!");
+        } catch(SQLException se){
+            //Handle errors for JDBC 
+            se.printStackTrace();
+        } catch(Exception e){
+            //Handle errors for Class.forName
+            e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+        }//end finally try
     
     }
     
@@ -160,7 +190,7 @@ public class homework2{
         
         try{
             System.out.println("Creating statement...");
-            stmt = conn.createStatement();
+            //stmt = conn.createStatement();
             String sql = "SELECT ssn,name_ FROM staff WHERE hiredBy="+managerSSN;
             
             ResultSet rs = stmt.executeQuery(sql);
@@ -284,11 +314,11 @@ public class homework2{
             e.printStackTrace();
         } finally {
             //finally block used to close resources
-            try{ if(stmt!=null) { stmt.close(); } }	catch(SQLException se2){}// nothing we can do
         }//end finally try
         
     }
     
+    //for use with case1()
     static Schedule newSchedule(){
         //start year,month,date,hour
         System.out.println("Please Enter in StartTime Year|Month|Date|Hour with '|' seperating the input.");
@@ -356,3 +386,48 @@ class Schedule{
     }
     
 }
+
+class CreditCardCo{
+
+}
+    
+
+
+/*
+    public static void test(){
+        Connection conn = null;
+        Statement stmt = null;
+        try{
+            //STEP 2: Register JDBC driver
+            Class.forName(JDBC_DRIVER);
+
+            //STEP 3: Open a connection
+            System.out.println("Connecting to database...");
+            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+
+            //STEP 4: Execute a query
+            System.out.println("Creating statement...");
+            stmt = conn.createStatement();
+            String sql;
+            sql = "SELECT * FROM Class";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            //process result ResultSet
+            while(rs.next()){
+                int id = rs.getInt("ID");
+                String title = rs.getString("TITLE");
+                System.out.println("ID: " + id + "  Title: " + title);
+            }
+        } catch(SQLException se){
+        //Handle errors for JDBC
+        se.printStackTrace();
+        } catch(Exception e){
+        //Handle errors for Class.forName
+        e.printStackTrace();
+        } finally {
+            //finally block used to close resources
+            try{ if(stmt!=null) { stmt.close(); } }	catch(SQLException se2){}// nothing we can do
+            try{ if(conn!=null) { conn.close(); } }     catch(SQLException se) { se.printStackTrace(); }
+        }//end finally try
+    }
+*/

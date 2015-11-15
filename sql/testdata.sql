@@ -5,10 +5,10 @@ INSERT INTO movie VALUES('movie2','type2', 'movie descrip2');
 INSERT INTO movie VALUES('movie3','type3', 'movie descrip3');
 INSERT INTO movie VALUES('movie4','type4', 'movie descrip4');
 
-INSERT INTO membertype VALUES('bronze', 'descrip1', 0);
-INSERT INTO membertype VALUES('silver', 'descrip2', 20);
-INSERT INTO membertype VALUES('gold', 'descrip3', 40);
-INSERT INTO membertype VALUES('guest', 'descrip4', 0);
+INSERT INTO membertype VALUES('bronze', 'descrip1', 0, 5);
+INSERT INTO membertype VALUES('silver', 'descrip2', 20, 10);
+INSERT INTO membertype VALUES('gold', 'descrip3', 40, 15);
+INSERT INTO membertype VALUES('guest', 'descrip4', 0, 0);
 
 INSERT INTO positions VALUES('register', 'descrip1', 2);
 INSERT INTO positions VALUES('projectionist', 'descrip2', 2);
@@ -38,7 +38,6 @@ INSERT INTO creditcard VALUES('2222333344445555',to_date('2017/03/27','yyyy/mm/d
 INSERT INTO creditcard VALUES('1111222233338989',to_date('2018/04/03','yyyy/mm/dd'),'mastercard');
 INSERT INTO creditcard VALUES('1111222233337777',to_date('2020/01/10','yyyy/mm/dd'),'mastercard');
 
-INSERT INTO guestinfo VALUES('jdoe1email', 'movie1');
 
 INSERT INTO registerinfo VALUES('asavage1email', 'asavage1','savagepass','savage home', 25, 100);
 INSERT INTO registerinfo VALUES('jhyneman1email', 'jhyneman1','hynemanpass','hyneman home', 30, 30);
@@ -54,6 +53,8 @@ INSERT INTO moviehistory VALUES('gimahara1', 'movie1');
 
 INSERT INTO theatre VALUES('theatre1', 11122, 2, 'owner1', 'manager1');	
 INSERT INTO theatre VALUES('theatre2', 11133, 5, 'owner2', 'manager2');
+
+INSERT INTO guestinfo VALUES('jdoe1email', 'theatre1');
 
 INSERT INTO screen VALUES('theatre1', 1, 10);
 INSERT INTO screen VALUES('theatre1', 2, 20);
@@ -83,7 +84,7 @@ INSERT INTO movieresponses VALUES(0,0,'gimahara1','this guy dies at the end',to_
 
 INSERT INTO theatrethread VALUES(0,'jhyneman1','theatre2', 'this theatre''s workers are weird',to_date('2015/11/01-6:01 PM','yyyy/mm/dd-HH:MI AM'));
 
-INSERT INTO movieresponses VALUES(0,0,'gimahara1','yep',to_date('2015/11/05-8:48 PM','yyyy/mm/dd-HH:MI AM'));
+INSERT INTO theatreresponses VALUES(0,0,'gimahara1','yep',to_date('2015/11/05-8:48 PM','yyyy/mm/dd-HH:MI AM'));
 
 INSERT INTO manager_ VALUES('111223333','bob','theatre1', 'manhome1','1113338989');
 INSERT INTO manager_ VALUES('222334444','tom', 'theatre2', 'manhome2', '2223334545');
@@ -92,9 +93,9 @@ INSERT INTO staff VALUES('333445555','peter', 'register','111223333','theatre1',
 INSERT INTO staff VALUES('777889999','james', 'jantorial','111223333','theatre1','shome2','9998887766');
 INSERT INTO staff VALUES('666768787','steve', 'projectionist','111223333', 'theatre1','shome3', '6756903004');
 
-INSERT INTO schedule VALUES('333445555',to_date('2015/12/11-8:00 AM','yyyy/mm/dd-HH:MI AM'), to_date('2015/12/11-5:00 PM','yyyy/mm/dd-HH:MI AM'),'register','theatre1');
-INSERT INTO schedule VALUES('333445555',to_date('2015/12/13-4:00 PM','yyyy/mm/dd-HH:MI AM'), to_date('2015/12/13-12:00 AM','yyyy/mm/dd-HH:MI AM'),'register','theatre1');
-INSERT INTO schedule VALUES('777889999',to_date('2015/12/11-8:00 AM','yyyy/mm/dd-HH:MI AM'), to_date('2015/12/11-4:00 PM','yyyy/mm/dd-HH:MI AM'),'janitorial','theatre1');
+INSERT INTO schedule VALUES('333445555',to_date('2015/12/11-8:00 AM','yyyy/mm/dd-HH:MI AM'), to_date('2015/12/11-5:00 PM','yyyy/mm/dd-HH:MI AM'),'register','theatre1',0);
+INSERT INTO schedule VALUES('333445555',to_date('2015/12/13-4:00 PM','yyyy/mm/dd-HH:MI AM'), to_date('2015/12/13-12:00 AM','yyyy/mm/dd-HH:MI AM'),'register','theatre1',1);
+INSERT INTO schedule VALUES('777889999',to_date('2015/12/11-8:00 AM','yyyy/mm/dd-HH:MI AM'), to_date('2015/12/11-4:00 PM','yyyy/mm/dd-HH:MI AM'),'janitorial','theatre1',2);
 
 
 

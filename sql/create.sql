@@ -57,7 +57,8 @@ review varchar(2000));
 CREATE TABLE MemberType(
 type_ varchar(16) PRIMARY KEY NOT NULL,
 description varchar(2000) NOT NULL,
-pointsRequired int NOT NULL);
+pointsRequired int NOT NULL,
+ptsperreview int NOT NULL);
 
 CREATE TABLE creditCard(
 ccnum varchar(19) PRIMARY KEY NOT NULL, --fk to user ccnum
@@ -76,7 +77,7 @@ type_ varchar(16) NOT NULL --fk to membertype.type
 
 CREATE TABLE GuestInfo (
 email varchar(255) PRIMARY KEY NOT NULL, 	--FK to user.email
-movie varchar(64) NOT NULL			--fk to movie.title
+theatre varchar(255) NOT NULL			--fk to theatre.address
 );
 
 CREATE TABLE registerInfo(
@@ -154,12 +155,13 @@ phone varchar(10) NOT NULL
 );
 
 CREATE TABLE Schedule(
-staff varchar(9) NOT NULL,	--fk to staff.ssn
+ssn varchar(9) NOT NULL,	--fk to staff.ssn
 start_ timestamp NOT NULL,
 end_ timestamp NOT NULL,
 type_ varchar(32) NOT NULL,							--fk to position.type
-location_ varchar(255) NOT NULL					--fk to theatre.address
-);
+location_ varchar(255) NOT NULL,					--fk to theatre.address
+id_ int NOT NULL);
+
 
 --
 --Constraints
@@ -173,7 +175,7 @@ ALTER TABLE screen
 ADD PRIMARY KEY (theatre,screen);
 
 ALTER TABLE schedule
-ADD PRIMARY KEY (staff, start_,end_);
+ADD PRIMARY KEY (ssn, start_,end_);
 
 ALTER TABLE moviehistory
 ADD PRIMARY KEY(username, movie);
@@ -212,7 +214,7 @@ ADD FOREIGN KEY (type_) REFERENCES membertype(type_);
 ALTER TABLE guestinfo
 ADD FOREIGN KEY (email) REFERENCES user_(email);
 ALTER TABLE guestinfo 
-ADD FOREIGN KEY (movie) REFERENCES movie(title);
+ADD FOREIGN KEY (theatre) REFERENCES theatre(address);
 
 ALTER TABLE registerinfo 
 ADD FOREIGN KEY (email) REFERENCES user_(email);
@@ -227,9 +229,9 @@ ADD FOREIGN KEY (user_) REFERENCES registerinfo(username);
 ALTER TABLE moviethread
 ADD FOREIGN KEY (movie) REFERENCES movie(title);
 
-ALTER TABLE moviethreadresponses
+ALTER TABLE movieresponses
 ADD FOREIGN KEY (threadid) REFERENCES moviethread(id_);
-ALTER TABLE moviethreadresponses
+ALTER TABLE movieresponses
 ADD FOREIGN KEY (user_) REFERENCES registerinfo(username);
 
 ALTER TABLE theatrethread
@@ -251,7 +253,7 @@ ALTER TABLE manager_
 ADD FOREIGN KEY (location_) REFERENCES theatre(address);
 
 ALTER TABLE schedule
-ADD FOREIGN KEY (staff) REFERENCES staff(ssn);
+ADD FOREIGN KEY (ssn) REFERENCES staff(ssn);
 ALTER TABLE schedule
 ADD FOREIGN KEY (type_) REFERENCES positions(type_);
 ALTER TABLE schedule

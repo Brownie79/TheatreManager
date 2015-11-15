@@ -57,7 +57,8 @@ review varchar(2000));
 CREATE TABLE MemberType(
 type_ varchar(16) PRIMARY KEY NOT NULL,
 description varchar(2000) NOT NULL,
-pointsRequired int NOT NULL);
+pointsRequired int NOT NULL,
+ptsperreview int NOT NULL);
 
 CREATE TABLE creditCard(
 ccnum varchar(19) PRIMARY KEY NOT NULL, --fk to user ccnum
@@ -159,8 +160,7 @@ start_ timestamp NOT NULL,
 end_ timestamp NOT NULL,
 type_ varchar(32) NOT NULL,							--fk to position.type
 location_ varchar(255) NOT NULL,					--fk to theatre.address
-id_ integer NOT NULL,
-);
+id_ int NOT NULL);
 
 --
 --Constraints
@@ -228,9 +228,9 @@ ADD FOREIGN KEY (user_) REFERENCES registerinfo(username);
 ALTER TABLE moviethread
 ADD FOREIGN KEY (movie) REFERENCES movie(title);
 
-ALTER TABLE moviethreadresponses
+ALTER TABLE movieresponses
 ADD FOREIGN KEY (threadid) REFERENCES moviethread(id_);
-ALTER TABLE moviethreadresponses
+ALTER TABLE movieresponses
 ADD FOREIGN KEY (user_) REFERENCES registerinfo(username);
 
 ALTER TABLE theatrethread

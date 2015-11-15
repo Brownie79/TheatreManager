@@ -160,12 +160,8 @@ start_ timestamp NOT NULL,
 end_ timestamp NOT NULL,
 type_ varchar(32) NOT NULL,							--fk to position.type
 location_ varchar(255) NOT NULL,					--fk to theatre.address
-<<<<<<< HEAD
 id_ int NOT NULL);
-=======
-id_ number NOT NULL,
-);
->>>>>>> c5d2f275dcfd2086779cabf225b294db4c287d69
+
 
 --
 --Constraints
@@ -179,7 +175,7 @@ ALTER TABLE screen
 ADD PRIMARY KEY (theatre,screen);
 
 ALTER TABLE schedule
-ADD PRIMARY KEY (staff, start_,end_);
+ADD PRIMARY KEY (ssn, start_,end_);
 
 ALTER TABLE moviehistory
 ADD PRIMARY KEY(username, movie);
@@ -257,7 +253,7 @@ ALTER TABLE manager_
 ADD FOREIGN KEY (location_) REFERENCES theatre(address);
 
 ALTER TABLE schedule
-ADD FOREIGN KEY (staff) REFERENCES staff(ssn);
+ADD FOREIGN KEY (ssn) REFERENCES staff(ssn);
 ALTER TABLE schedule
 ADD FOREIGN KEY (type_) REFERENCES positions(type_);
 ALTER TABLE schedule

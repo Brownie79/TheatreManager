@@ -1,1 +1,2 @@
-
+-- Question #2: DROP PROCEDURE
+DROP PROCEDURE SeeSchedule;

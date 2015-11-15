@@ -132,6 +132,15 @@ public class homework2{
         return input.nextInt();
     }
     
+    private static void case2(){
+        //set credit points per review
+        
+    }
+    
+    private static void case3(){
+    
+    }
+    
     private static void case1(){
         //try catch all?
         //ask for Manager SSN to make sure they control the worker they want to update the schedule for
@@ -188,10 +197,57 @@ public class homework2{
                         //fetch and list all the schedules of that user
                         //ask for which one needs to be editted
                         //change that and update the db
+                        //process result ResultSet
+                        
+                       String selectedSQL = "SELECT * FROM schedule WHERE staff="+selectedStaff[1]; //returns all schedules of selected worker
+                       ResultSet schedules = stmt.executeQuery(selectedSQL);
+                       
+                       ArrayList<Schedule> sArray = new ArrayList();
+                       
+                       //print all schedules to allow user to pick what they want to update
+                       while(schedules.next()){
+                           Timestamp start = schedules.getTimestamp("start_");
+                           Timestamp end = schedules.getTimestamp("end_");
+                           String type = schedules.getString("type_");
+                           String location = schedules.getString("location_");
+                           
+                           Schedule nSchedule = new Schedule(start,end,type,location);
+                           System.out.println(sArray.size()+". "+nSchedule);
+                           sArray.add(nSchedule); //size increments now
+                        }
+                        
+                        if(sArray.size() == 0){
+                            System.out.println("That staff is NOT currently assigned a working time");
+                            return; //return to menu
+                        }
+                        
+                        //else
+                        System.out.println("Which day would  you like to update? (Input the # of the entry)");
+                        int dayChoice = input.nextInt();
+                        Schedule selectedSchedule = sArray.get(dayChoice);
+                        
+                        System.out.println("You selected the following schedule: " + selectedSchedule);
+                        //Start, End, Type, Location
+                        Schedule newSchedule = newSchedule();
+                        
+                        
+                        /*
+                        schedules.absolute(dayChoice); //sets the cursor to that row
+                        
+                        Timestamp start = schedules.getTimestamp("start_");
+                        Timestamp end = schedules.getTimestamp("end_");
+                        String type = schedules.getString("type_");
+                        String location = schedules.getString("location_");
+                        
+                        String startEnd = "Location: " + location+"\n"+
+                                   "\t\tStart: " + start + "\t\tEnd" + end+
+                                   "\t\tType: "+type;
+                        System.out.println("You've Selected This Schedule to Update!" + "\n" + startEnd);
+                        */
                     } else if (setUpdateC.equalsIgnoreCase("s")) {
                         //ask for date and time of new schedule
                         //compare time, position, and theatre to make sure there doesn't exist any exiting job
-                    } else { return; //invalid input }
+                    } else { return; }//invalid input 
  
                         
 
@@ -233,4 +289,70 @@ public class homework2{
         
     }
     
+    static Schedule newSchedule(){
+        //start year,month,date,hour
+        System.out.println("Please Enter in StartTime Year|Month|Date|Hour with '|' seperating the input.");
+        String[] nStart = input.next().split("|");
+                                        //year,month,date,hour,0,0,0 
+        Timestamp start = new Timestamp(
+                Integer.parseInt(nStart[0]), //year
+                Integer.parseInt(nStart[1]), //month
+                Integer.parseInt(nStart[2]), //date
+                Integer.parseInt(nStart[3]), //hour
+                0,0,0 //minute,second,nanos
+        );
+        
+       
+        //end year,month,date,hour
+        System.out.println("Please Enter in EndTime Year|Month|Date|Hour with '|' seperating the input.");
+        String[] nEnd = input.next().split("|");
+                                        //year,month,date,hour,0,0,0 
+        Timestamp end = new Timestamp(
+                Integer.parseInt(nEnd[0]), //year
+                Integer.parseInt(nEnd[1]), //month
+                Integer.parseInt(nEnd[2]), //date
+                Integer.parseInt(nEnd[3]), //hour
+                0,0,0 //minute,second,nanos
+        );
+        
+        
+        //type
+        System.out.println("What position? "); 
+        String type = input.next();
+        
+        //location
+        System.out.println("New Location? ");
+        String location = input.next();
+        
+        Schedule nSchedule = new Schedule(start,end,type,location);
+        return nSchedule;
+    }
+    
 }//end class
+
+class Schedule{
+    //holds data for a schedule type object
+    
+    //public String staffSSN;
+    public Timestamp start;
+    public Timestamp end;
+    public String type;
+    public String location;
+    
+    public Schedule(Timestamp s, Timestamp e, String t, String l){
+        //staffSSN = ssn;
+        start = s;
+        end = e;
+        type = t;
+        location = l;
+    }
+    
+    public String toString(){
+        String startEnd = "Location: " + location+"\n"+
+                            "\t\tStart: " + start + "\t\tEnd" + end+
+                            "\t\tType: "+type;
+                
+        return startEnd;
+    }
+    
+}

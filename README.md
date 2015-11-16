@@ -7,4 +7,4 @@ To compile/execute/debug the PL/SQL statements:
 - When you run a DBMS_OUTPUT.PUTLINE('-----'); statement, you will see output in the DBMS output window
 
 - You can simply compile a PL/SQL procedure by highlighting the create or replace procedure then clicking the green arrow
-- To run the program, highlight the EXECUTE <procedure>; statement and click the green arrow to run it
+- To run the program, highlight the EXECUTE <procedure>; statement and click the green arrow to run it. The program first has to be compiled before execution.

@@ -116,6 +116,7 @@ public class homework2{
         String guestPhoneNum = input.next();
         
         System.out.println("What is their CC number?");
+        System.out.println("Sample CC #s: 110222 ($500.45) and 111111 ($0.00)");
         int guestCCNum = input.nextInt();
         
         System.out.println("What location would you like to view the movie at?: ");
@@ -331,8 +332,8 @@ public class homework2{
                 System.out.println("New Location: ");
                 String nLocation = input.next();
                 
-                String getShifts = "SELECT start_,end_ FROM schedule WHERE type='"
-                        +newType+"' AND location='"+nLocation+"'";
+                String getShifts = "SELECT start_,end_ FROM schedule WHERE type_='"
+                        +newType+"' AND location_='"+nLocation+"'";
                 
                 ResultSet shifts = stmt.executeQuery(getShifts); //gets shifts for that location for that job
                 
@@ -425,7 +426,7 @@ public class homework2{
                 String fetchShifts = "SELECT * FROM schedule WHERE ssn="+selectedStaff[1];
                 ResultSet workerShifts = stmt.executeQuery(fetchShifts);
                 
-                int c = 0;
+                int c = 1;
                 while(workerShifts.next()){
                     System.out.println(c+". Type: " + workerShifts.getString("type_")+
                             "\nLocation: " + workerShifts.getString("location_") +
@@ -568,6 +569,4 @@ class CreditCardCo{
         ccDB.replace(cc, chargeAmount);
     }
 }
-
-
 

@@ -14,12 +14,15 @@ CREATE TABLE MovieTimes(
 theatre varchar(255) NOT NULL, -- fk to theatre.address
 screen int NOT NULL,
 Movie varchar(255) NOT NULL, -- fk to movie.title
-start_ timestamp NOT NULL);
+date_ date NOT NULL,
+start_ varchar(5) NOT NULL
+);
 
 CREATE TABLE Movie(
 title varchar(32) PRIMARY KEY NOT NULL,
 movietype varchar(32),
-description varchar(2000));
+description varchar(2000),
+release date);
 
 CREATE TABLE Star_(
 movie varchar(32) NOT NULL, -- fk to movie.title
@@ -156,10 +159,11 @@ phone varchar(10) NOT NULL
 
 CREATE TABLE Schedule(
 ssn varchar(9) NOT NULL,	--fk to staff.ssn
-start_ timestamp NOT NULL,
-end_ timestamp NOT NULL,
-type_ varchar(32) NOT NULL,							--fk to position.type
-location_ varchar(255) NOT NULL,					--fk to theatre.address
+date_ date NOT NULL,
+start_ varchar(5) NOT NULL,
+end_ varchar(5) NOT NULL,
+type_ varchar(32) NOT NULL,					--fk to position.type
+location_ varchar(255) NOT NULL,				--fk to theatre.address
 id_ int NOT NULL);
 
 
@@ -175,7 +179,7 @@ ALTER TABLE screen
 ADD PRIMARY KEY (theatre,screen);
 
 ALTER TABLE schedule
-ADD PRIMARY KEY (ssn, start_,end_);
+ADD PRIMARY KEY (ssn, date_);
 
 ALTER TABLE moviehistory
 ADD PRIMARY KEY(username, movie);

@@ -1,0 +1,17 @@
+.depressed{
+	/*make it darker / look shadowing background*/
+    background: lightgray;
+    border: 1px solid #000;
+    border-right: 1px solid #353535;
+    border-bottom: 1px solid #353535;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.featured{
+    /**/
+    height: 250px;
+    width: 90%;
+    margin: 0 auto;
+}

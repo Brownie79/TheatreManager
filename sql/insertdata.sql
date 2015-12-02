@@ -2,10 +2,10 @@
 -- I haven't done data for every table, so don't add this stuff in just yet
 
 -- Theatre Data
-INSERT INTO Theatre VALUES ('667 Seashell Dr.',90210,10,'Russell Wilson','302425250', 5.99);
-INSERT INTO Theatre VALUES ('28 Rush St.',55405,10,'Adrian Peterson','978133765', 7.99);
-INSERT INTO Theatre VALUES ('188 Victory Ln.',80204,12,'Peyton Manning','090343658', 6.99);
-INSERT INTO Theatre VALUES ('1701 Spygate Dr.',12035,6,'Thomas Brady','163732568', 12.99);
+INSERT INTO Theatre VALUES ('667 Seashell Dr.',60610,10,'Russell Wilson','302425250', 8);
+INSERT INTO Theatre VALUES ('28 Rush St.',60616,10,'Adrian Peterson','978133765', 8);
+INSERT INTO Theatre VALUES ('188 Victory Ln.',60651,12,'Peyton Manning','090343658', 10);
+INSERT INTO Theatre VALUES ('1701 Spygate Dr.',60660,6,'Thomas Brady','163732568', 14);
 
 -- Movies Data
 -- movietypes: Family, Action, Adventure, Horror, Drama, Comedy, Other

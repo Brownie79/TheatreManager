@@ -8,7 +8,8 @@ address varchar(255) Primary key NOT NULL,
 zip int NOT NULL,
 screens int NOT NULL,
 owner_ varchar(32) NOT NULL,
-manager_ varchar(32) NOT NULL ); -- FK to manager.ssn
+manager_ varchar(32) NOT NULL, -- FK to manager.ssn
+price int NOT NULL);
 
 CREATE TABLE MovieTimes(
 theatre varchar(255) NOT NULL, -- fk to theatre.address

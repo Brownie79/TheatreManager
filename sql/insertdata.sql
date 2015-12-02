@@ -2,15 +2,10 @@
 -- I haven't done data for every table, so don't add this stuff in just yet
 
 -- Theatre Data
-INSERT INTO Theatre VALUES ('667 Seashell Dr.',90210,10,'Charles Hutchinson','302425250');
-INSERT INTO Theatre VALUES ('1001 Golden St.',34421,8,'James Hodge','427314256');
-INSERT INTO Theatre VALUES ('35 Harlem Rd.',60610,12,'Andrew Ripka','423842813');
-INSERT INTO Theatre VALUES ('455 Honeysuckle Pl.',80002,8,'John Stone','698968321');
-INSERT INTO Theatre VALUES ('3241 S Wabash Ave.',60616,8,'Alfred duPont','768723414');
-INSERT INTO Theatre VALUES ('77 Clearmount Cir.',60001,4,'Duane Williams','608765243');
-INSERT INTO Theatre VALUES ('28 Rush St.',55405,10,'Adrian Peterson','978133765');
-INSERT INTO Theatre VALUES ('188 Victory Ln.',80204,12,'Peyton Manning','090343658');
-INSERT INTO Theatre VALUES ('1701 Spygate Dr.',02035,6,'Thomas Brady','163732568');
+INSERT INTO Theatre VALUES ('667 Seashell Dr.',90210,10,'Russell Wilson','302425250', 5.99);
+INSERT INTO Theatre VALUES ('28 Rush St.',55405,10,'Adrian Peterson','978133765', 7.99);
+INSERT INTO Theatre VALUES ('188 Victory Ln.',80204,12,'Peyton Manning','090343658', 6.99);
+INSERT INTO Theatre VALUES ('1701 Spygate Dr.',12035,6,'Thomas Brady','163732568', 12.99);
 
 -- Movies Data
 -- movietypes: Family, Action, Adventure, Horror, Drama, Comedy, Other
@@ -50,25 +45,30 @@ INSERT INTO Positions VALUES ('Concessions','Responsible for selling snacks and 
 INSERT INTO Positions VALUES ('Janitor','Responsible for maintaining the cleanliness of the movie theater',0);
 INSERT INTO Positions VALUES ('Screens Operator','Responsible for playing/operating the movies at the screens',0);
 INSERT INTO Positions VALUES ('Party Host','Responsible for coordinating/organizing parties at the theatre',0);
+INSERT INTO Positions VALUES ('Security','Responsible for keeping the theatre safe and secure',0);
 INSERT INTO Positions VALUES ('Manager','Responsible for managing employees and scheduling their shifts',1);
 INSERT INTO Positions VALUES ('Web Admin','Responsible for updating/modifying the database and the movies at the theatre',2);
 
 -- staff:
+-- Russell Wilson's Theatre (i.e my fantasy team)
 INSERT INTO staff VALUES ('102030121','Johnny Manziel','Cashier','302425250','667 Seashell Dr.','8827689834');
 INSERT INTO staff VALUES ('541090292','Stevan Ridley','Concessions','302425250','667 Seashell Dr.','8994202185');
 INSERT INTO staff VALUES ('235348701','Julio Jones','Janitor','302425250','667 Seashell Dr.','8338658426');
 INSERT INTO staff VALUES ('437188797','Andre Johnson','Screens Operator','302425250','667 Seashell Dr.','8445018305');
 INSERT INTO staff VALUES ('147269562','Tyler Lockett','Party Host','302425250','667 Seashell Dr.','8996415755');
 INSERT INTO staff VALUES ('543680853','Anthony Barr','Web Admin','302425250','667 Seashell Dr.','8114807566');
-
+INSERT INTO staff VALUES ('939016016','Ndamukong Suh','Security','302425250','667 Seashell Dr.','8009757193');
+-- All Day's Theatre
+INSERT INTO staff VALUES ('492648375','Andrew Luck','Cashier','978133765','28 Rush St.','4224537586');
+INSERT INTO staff VALUES ('227598761','LeVeon Bell','Concessions','978133765','28 Rush St.','2285560965');
+INSERT INTO staff VALUES ('000532123','Dez Bryant','Janitor','978133765','28 Rush St.','2281006710');
+INSERT INTO staff VALUES ('603434567','AJ Green','Screens Operator','978133765','28 Rush St.','2257779091');
+INSERT INTO staff VALUES ('552506071','Jeremy Hill','Party Host','978133765','28 Rush St.','2267815111');
+INSERT INTO staff VALUES ('323216456','Kellen Davis','Web Admin','978133765','28 Rush St.','2267053090');
+INSERT INTO staff VALUES ('145468792','Patrick Willis','Security','978133765','28 Rush St.','8005053111');
 
 -- manager:
-INSERT INTO Manager_ VALUES ('302425250','Tom Wrigglesworth','667 Seashell Dr.','816 Fulton St.','2246730201');
-INSERT INTO Manager_ VALUES ('427314256','Daniel Thomas','1001 Golden St.','353 East St.','8007593000');
-INSERT INTO Manager_ VALUES ('423842813','J.J Johnson','35 Harlem Rd.','522 Summit St.','3357579001');
-INSERT INTO Manager_ VALUES ('698968321','Johnathan Cena','455 Honeysuckle Pl.','665 Lawrence St.','8716980042');
-INSERT INTO Manager_ VALUES ('768723414','Brandon Wallace','3241 S Wabash Ave.','622 2nd Ave.','7002482045');
-INSERT INTO Manager_ VALUES ('608765243','Lucas Leighner','77 Clearmount Cir.','76 King St.','8472286701');
-INSERT INTO Manager_ VALUES ('978133765','Richard Paulsen','28 Rush St.','452 Highland Dr.','5550650054');
+INSERT INTO Manager_ VALUES ('302425250','Richard Sherman','667 Seashell Dr.','816 Fulton St.','2246730201');
+INSERT INTO Manager_ VALUES ('978133765','Reggie Bush','28 Rush St.','452 Highland Dr.','5550650054');
 INSERT INTO Manager_ VALUES ('090343658','Aaron Wroggers','188 Victory Ln.','75 Hillcrest Dr.','2507503005');
-INSERT INTO Manager_ VALUES ('163732568','Michael Hu','1701 Spygate Dr.','959 Pine St.','8003005283');
+INSERT INTO Manager_ VALUES ('163732568','Bill Belichick','1701 Spygate Dr.','959 Pine St.','8003005283');

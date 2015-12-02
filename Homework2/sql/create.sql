@@ -87,7 +87,7 @@ theatre varchar(255) NOT NULL			--fk to theatre.address
 CREATE TABLE registerInfo(
 email varchar(255) PRIMARY KEY NOT NULL,	--fk to user.email
 username varchar(32) UNIQUE NOT NULL,
-pass varchar(32) NOT NULL,
+password varchar(32) NOT NULL,
 address varchar(255) NOT NULL,
 points int NOT NULL,
 pointEarned int NOT NULL);

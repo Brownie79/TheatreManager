@@ -9,29 +9,29 @@ INSERT INTO Theatre VALUES ('1701 Spygate Dr.',60660,6,'Thomas Brady','163732568
 
 -- Movies Data
 -- movietypes: Family, Action, Adventure, Horror, Drama, Comedy, Other
-INSERT INTO Movies VALUES ('The Peanuts Movie','Family','Charlie Brown, the world’s most beloved underdog, embarks upon an epic and heroic quest, while his best pal, the lovable beagle Snoopy, takes to the skies to pursue his arch-nemesis, the Red Baron.',to_date('2015/11/06','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('James Bond: Spectre','Action','A cryptic message from Bond’s past sends him on a trail to uncover a sinister organisation. While M battles political forces to keep the secret service alive, Bond peels back the layers of deceit to reveal the terrible truth behind SPECTRE.', to_date('2015/11/0','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Hunger Games: Mockingjay pt 2','Action','After being symbolized as the "Mockingjay", Katniss Everdeen and District 13 engage in an all-out revolution against the autocratic Capitol.', to_date('2015/11/20','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('The Martian','Adventure','During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet.', to_date('2015/10/02','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Creed','Drama','Adonis Johnson never knew his famous father, world heavyweight champion Apollo Creed, who died before he was born.', to_date('2015/11/25','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('The Good Dinosaur','Adventure','The Good Dinosaur asks the generations-old question: What if the asteroid that forever changed life on Earth missed the planet completely and giant dinosaurs never became extinct?', to_date('2015/11/25','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Pan','Adventure','Peter is a mischievous 12-year-old boy with an irrepressible rebellious streak, but in the bleak London orphanage where he has lived his whole life those qualities do not exactly fly.', to_date('2015/10/09','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Love the Coopers','Comedy','Love the Coopers follows the Cooper clan as four generations of extended family come together for their annual Christmas Eve celebration. As the evening unfolds, a series of unexpected visitors and unlikely events turn the night upside down.', to_date('2015/11/13','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Star Wars: The Force Awakens','Action','Lucasfilm and visionary director J.J. Abrams join forces to take you back again to a galaxy far, far away as Star Wars returns to the big screen with Star Wars: The Force Awakens.',to_date('2015/12/18','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Concussion','Drama','Will Smith stars in Concussion, a dramatic thriller based on the incredible true David vs. Goliath story of American immigrant Dr. Bennet Omalu, the brilliant forensic neuropathologist who made the first discovery of CTE.', to_date('2015/12/25','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Joy','Drama','JOY is the story of a family across four generations and the woman who rises to become founder and matriarch of a powerful family business dynasty. JOY stars Jennifer Lawrence in a film written and directed by David O. Russell.', to_date('2015/12/25','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Hunger Games: Mockingjay pt 1','Action','The worldwide phenomenon of The Hunger Games continues to set the world on fire with The Hunger Games: Mockingjay - Part 1, which finds Katniss Everdeen (Jennifer Lawrence) in District 13 after she literally shatters the games forever.', to_date('2014/11/21','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Hunger Games: Catching Fire','Action','As rebellion simmers, a cruel change in the Hunger Games may change Panem forever.', to_date('2013/11/22','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Elf','Comedy','A man (Will Ferrell) leaves Santa''s workshop to search for his family.', to_date('2003/11/07','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Little Boy','Drama','LITTLE BOY is a powerful and moving film about a little boy who is willing to do whatever it takes to bring his dad home from World War II alive.', to_date('2015/04/24','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Click','Comedy','An architect obtains a universal remote that allows him to control his world.', to_date('2006/06/23','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Lockout','Action','A man is wrongly convicted of conspiracy to commit espionage against the U.S.', to_date('2012/04/13','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('August Rush','Drama','A boy (Freddie Highmore) uses his musical talent to find his parents.', to_date('2007/11/21','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Monster House','Horror','Three youths discover that the residence next door is an evil, living creature.', to_date('2006/05/21','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Freddy vs Jason','Horror','Razor-clawed Freddy (Robert Englund) battles masked killer Jason (Ken Kirzinger).', to_date('2015/08/03','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Scream 4','Horror','Ten years have passed, and Sidney Prescott, who has put herself back together thanks in part to her writing, is visited by the Ghostface Killer.', to_date('2015/04/11','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('The Human Centipede','Horror','Two women fall prey to a mad surgeon who wants to suture people together via their gastric systems.', to_date('2010/04/30','yyyy/mm/dd'));
-INSERT INTO Movies VALUES ('Earth','Other','Animal mothers struggle to raise their young in an increasingly harsh environment.', to_date('2014/07/07','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('The Peanuts Movie','Family','Charlie Brown, the world’s most beloved underdog, embarks upon an epic and heroic quest, while his best pal, the lovable beagle Snoopy, takes to the skies to pursue his arch-nemesis, the Red Baron.',to_date('2015/11/06','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('James Bond: Spectre','Action','A cryptic message from Bond’s past sends him on a trail to uncover a sinister organisation. While M battles political forces to keep the secret service alive, Bond peels back the layers of deceit to reveal the terrible truth behind SPECTRE.', to_date('2015/11/0','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Hunger Games: Mockingjay pt 2','Action','After being symbolized as the "Mockingjay", Katniss Everdeen and District 13 engage in an all-out revolution against the autocratic Capitol.', to_date('2015/11/20','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('The Martian','Adventure','During a manned mission to Mars, Astronaut Mark Watney is presumed dead after a fierce storm and left behind by his crew. But Watney has survived and finds himself stranded and alone on the hostile planet.', to_date('2015/10/02','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Creed','Drama','Adonis Johnson never knew his famous father, world heavyweight champion Apollo Creed, who died before he was born.', to_date('2015/11/25','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('The Good Dinosaur','Adventure','The Good Dinosaur asks the generations-old question: What if the asteroid that forever changed life on Earth missed the planet completely and giant dinosaurs never became extinct?', to_date('2015/11/25','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Pan','Adventure','Peter is a mischievous 12-year-old boy with an irrepressible rebellious streak, but in the bleak London orphanage where he has lived his whole life those qualities do not exactly fly.', to_date('2015/10/09','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Love the Coopers','Comedy','Love the Coopers follows the Cooper clan as four generations of extended family come together for their annual Christmas Eve celebration. As the evening unfolds, a series of unexpected visitors and unlikely events turn the night upside down.', to_date('2015/11/13','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Star Wars: The Force Awakens','Action','Lucasfilm and visionary director J.J. Abrams join forces to take you back again to a galaxy far, far away as Star Wars returns to the big screen with Star Wars: The Force Awakens.',to_date('2015/12/18','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Concussion','Drama','Will Smith stars in Concussion, a dramatic thriller based on the incredible true David vs. Goliath story of American immigrant Dr. Bennet Omalu, the brilliant forensic neuropathologist who made the first discovery of CTE.', to_date('2015/12/25','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Joy','Drama','JOY is the story of a family across four generations and the woman who rises to become founder and matriarch of a powerful family business dynasty. JOY stars Jennifer Lawrence in a film written and directed by David O. Russell.', to_date('2015/12/25','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Hunger Games: Mockingjay pt 1','Action','The worldwide phenomenon of The Hunger Games continues to set the world on fire with The Hunger Games: Mockingjay - Part 1, which finds Katniss Everdeen (Jennifer Lawrence) in District 13 after she literally shatters the games forever.', to_date('2014/11/21','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Hunger Games: Catching Fire','Action','As rebellion simmers, a cruel change in the Hunger Games may change Panem forever.', to_date('2013/11/22','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Elf','Comedy','A man (Will Ferrell) leaves Santa''s workshop to search for his family.', to_date('2003/11/07','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Little Boy','Drama','LITTLE BOY is a powerful and moving film about a little boy who is willing to do whatever it takes to bring his dad home from World War II alive.', to_date('2015/04/24','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Click','Comedy','An architect obtains a universal remote that allows him to control his world.', to_date('2006/06/23','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Lockout','Action','A man is wrongly convicted of conspiracy to commit espionage against the U.S.', to_date('2012/04/13','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('August Rush','Drama','A boy (Freddie Highmore) uses his musical talent to find his parents.', to_date('2007/11/21','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Monster House','Horror','Three youths discover that the residence next door is an evil, living creature.', to_date('2006/05/21','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Freddy vs Jason','Horror','Razor-clawed Freddy (Robert Englund) battles masked killer Jason (Ken Kirzinger).', to_date('2015/08/03','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Scream 4','Horror','Ten years have passed, and Sidney Prescott, who has put herself back together thanks in part to her writing, is visited by the Ghostface Killer.', to_date('2015/04/11','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('The Human Centipede','Horror','Two women fall prey to a mad surgeon who wants to suture people together via their gastric systems.', to_date('2010/04/30','yyyy/mm/dd'));
+INSERT INTO Movie VALUES ('Earth','Other','Animal mothers struggle to raise their young in an increasingly harsh environment.', to_date('2014/07/07','yyyy/mm/dd'));
 
 -- Positions
 
@@ -88,3 +88,6 @@ INSERT INTO Manager_ VALUES ('302425250','Richard Sherman','667 Seashell Dr.','8
 INSERT INTO Manager_ VALUES ('978133765','Reggie Bush','28 Rush St.','452 Highland Dr.','5550650054');
 INSERT INTO Manager_ VALUES ('190343658','Aaron Wroggers','188 Victory Ln.','75 Hillcrest Dr.','2507503005');
 INSERT INTO Manager_ VALUES ('163732568','Bill Belichick','1701 Spygate Dr.','959 Pine St.','8003005283');
+
+-- schedule:
+-- work day: 12pm (noon) to 12 (midnight) since theatres open late morning

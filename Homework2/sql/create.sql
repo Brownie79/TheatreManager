@@ -144,7 +144,7 @@ CREATE TABLE staff(
 ssn varchar(9) PRIMARY KEY NOT NULL,
 name_ varchar(32) NOT NULL,
 type_ varchar(16) NOT NULL,
-hiredBy varchar(32) NOT NULL,					--fk to manager.ssn
+hiredBy varchar(9) NOT NULL,					--fk to manager.ssn
 location_ varchar(255) NOT NULL,				-- fk to theatre.address
 address varchar(255) NOT NULL,
 phone varchar(10) NOT NULL

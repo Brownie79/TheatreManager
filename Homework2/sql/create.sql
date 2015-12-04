@@ -80,14 +80,14 @@ type_ varchar(16) NOT NULL --fk to membertype.type
 );
 
 CREATE TABLE GuestInfo (
-email varchar(255) PRIMARY KEY NOT NULL, 	--FK to user.email
-theatre varchar(255) NOT NULL			--fk to theatre.address
+email varchar(255) PRIMARY KEY NOT NULL,
+zipcode int NOT NULL			--fk to theatre.address
 );
 
 CREATE TABLE registerInfo(
 email varchar(255) PRIMARY KEY NOT NULL,	--fk to user.email
 username varchar(32) UNIQUE NOT NULL,
-pass varchar(32) NOT NULL,
+password varchar(32) NOT NULL,
 address varchar(255) NOT NULL,
 points int NOT NULL,
 pointEarned int NOT NULL);
@@ -144,7 +144,7 @@ CREATE TABLE staff(
 ssn varchar(9) PRIMARY KEY NOT NULL,
 name_ varchar(32) NOT NULL,
 type_ varchar(16) NOT NULL,
-hiredBy varchar(32) NOT NULL,					--fk to manager.ssn
+hiredBy varchar(9) NOT NULL,					--fk to manager.ssn
 location_ varchar(255) NOT NULL,				-- fk to theatre.address
 address varchar(255) NOT NULL,
 phone varchar(10) NOT NULL
@@ -216,10 +216,8 @@ ADD FOREIGN KEY (ccnum) REFERENCES user_(ccnum);
 ALTER TABLE user_ 
 ADD FOREIGN KEY (type_) REFERENCES membertype(type_);
 
-ALTER TABLE guestinfo
-ADD FOREIGN KEY (email) REFERENCES user_(email);
 ALTER TABLE guestinfo 
-ADD FOREIGN KEY (theatre) REFERENCES theatre(address);
+ADD FOREIGN KEY (zipcode) REFERENCES theatre(zip);
 
 ALTER TABLE registerinfo 
 ADD FOREIGN KEY (email) REFERENCES user_(email);

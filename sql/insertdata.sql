@@ -49,39 +49,39 @@ INSERT INTO Positions VALUES ('Security','Responsible for keeping the theatre sa
 INSERT INTO Positions VALUES ('Manager','Responsible for managing employees and scheduling their shifts',1);
 INSERT INTO Positions VALUES ('Web Admin','Responsible for updating/modifying the database and the movies at the theatre',2);
 
--- staff:
 -- Russell Wilson's Theatre (i.e my fantasy team)
-INSERT INTO staff VALUES ('102030121','Johnny Manziel','Cashier','302425250','667 Seashell Dr.','8827689834');
-INSERT INTO staff VALUES ('541090292','Stevan Ridley','Concessions','302425250','667 Seashell Dr.','8994202185');
-INSERT INTO staff VALUES ('235348701','Julio Jones','Janitor','302425250','667 Seashell Dr.','8338658426');
-INSERT INTO staff VALUES ('437188797','Andre Johnson','Screens Operator','302425250','667 Seashell Dr.','8445018305');
-INSERT INTO staff VALUES ('147269562','Tyler Lockett','Party Host','302425250','667 Seashell Dr.','8996415755');
-INSERT INTO staff VALUES ('543680853','Anthony Barr','Web Admin','302425250','667 Seashell Dr.','8114807566');
-INSERT INTO staff VALUES ('939016016','Ndamukong Suh','Security','302425250','667 Seashell Dr.','8009757193');
+INSERT INTO staff VALUES ('102030121','Johnny Manziel','Cashier','302425250','667 Seashell Dr.','123 Round Ln.','8827689834');
+INSERT INTO staff VALUES ('541090292','Stevan Ridley','Concessions','302425250','667 Seashell Dr.','244 Peach Tree Ln.','8994202185');
+INSERT INTO staff VALUES ('235348701','Julio Jones','Janitor','302425250','667 Seashell Dr.','105 Apple Rd.','8338658426');
+INSERT INTO staff VALUES ('437188797','Andre Johnson','Screens Operator','302425250','667 Seashell Dr.','65 Shaw Blvd.','8445018305');
+INSERT INTO staff VALUES ('147269562','Tyler Lockett','Party Host','302425250','667 Seashell Dr.','34 Payton Ave.','8996415755');
+INSERT INTO staff VALUES ('543680853','Anthony Barr','Web Admin','302425250','667 Seashell Dr.','555 South St.','8114807566');
+INSERT INTO staff VALUES ('939016016','Ndamukong Suh','Security','302425250','667 Seashell Dr.','329 Kangaroo Rd.','8009757193');
 -- All Day's Theatre
-INSERT INTO staff VALUES ('492648375','Andrew Luck','Cashier','978133765','28 Rush St.','4224537586');
-INSERT INTO staff VALUES ('227598761','LeVeon Bell','Concessions','978133765','28 Rush St.','2285560965');
-INSERT INTO staff VALUES ('400532123','Dez Bryant','Janitor','978133765','28 Rush St.','2281006710');
-INSERT INTO staff VALUES ('603434567','AJ Green','Screens Operator','978133765','28 Rush St.','2257779091');
-INSERT INTO staff VALUES ('552506071','Jeremy Hill','Party Host','978133765','28 Rush St.','2267815111');
-INSERT INTO staff VALUES ('323216456','Kellen Davis','Web Admin','978133765','28 Rush St.','2267053090');
-INSERT INTO staff VALUES ('145468792','Patrick Willis','Security','978133765','28 Rush St.','8005053111');
+INSERT INTO staff VALUES ('492648375','Andrew Luck','Cashier','978133765','28 Rush St.','29 Jump St.','4224537586');
+INSERT INTO staff VALUES ('227598761','LeVeon Bell','Concessions','978133765','28 Rush St.','201 Blue Dr.','2285560965');
+INSERT INTO staff VALUES ('400532123','Dez Bryant','Janitor','978133765','28 Rush St.','412 Wabash Ave.','2281006710');
+INSERT INTO staff VALUES ('603434567','AJ Green','Screens Operator','978133765','28 Rush St.','77 Wallace Cir.','2257779091');
+INSERT INTO staff VALUES ('552506071','Jeremy Hill','Party Host','978133765','28 Rush St.','541 Vegas Ln.','2267815111');
+INSERT INTO staff VALUES ('323216456','Kellen Davis','Web Admin','978133765','28 Rush St.','80 Maple Rd.','2267053090');
+INSERT INTO staff VALUES ('145468792','Patrick Willis','Security','978133765','28 Rush St.','11 Banana Rd.','8005053111');
 -- Peyton's Theatre
-INSERT INTO staff VALUES ('432504393','Corey Fuller','Cashier','190343658','188 Victory Ln.','4224537586');
-INSERT INTO staff VALUES ('834772374','Wes Welker','Concessions','190343658','188 Victory Ln.','2285560965');
-INSERT INTO staff VALUES ('238483884','Clay Matthews','Janitor','190343658','188 Victory Ln.','2281006710');
-INSERT INTO staff VALUES ('586325156','Omar Bolden','Screens Operator','190343658','188 Victory Ln.','2257779091');
-INSERT INTO staff VALUES ('235356969','Jason Witten','Party Host','190343658','188 Victory Ln.','2267815111');
-INSERT INTO staff VALUES ('253745355','DeMaryius Thomas','Web Admin','190343658','188 Victory Ln.','2267053090');
-INSERT INTO staff VALUES ('844525234','DeMarcus Ware','Security','190343658','188 Victory Ln.','8005053111');
+INSERT INTO staff VALUES ('432504393','Corey Fuller','Cashier','090343658','188 Victory Ln.','18 Manning Wy.','4224537586');
+INSERT INTO staff VALUES ('834772374','Wes Welker','Concessions','090343658','188 Victory Ln.','9 School Blvd.','2285560965');
+INSERT INTO staff VALUES ('238483884','Clay Matthews','Janitor','090343658','188 Victory Ln.','66 Triangle Pkwy.','2281006710');
+INSERT INTO staff VALUES ('586325156','Omar Bolden','Screens Operator','090343658','188 Victory Ln.','2010 1st St.','2257779091');
+INSERT INTO staff VALUES ('235356969','Jason Witten','Party Host','090343658','188 Victory Ln.','598 Jameson Dr.','2267815111');
+INSERT INTO staff VALUES ('253745355','DeMaryius Thomas','Web Admin','090343658','188 Victory Ln.','600 Sigma St.','2267053090');
+INSERT INTO staff VALUES ('844525234','DeMarcus Ware','Security','090343658','188 Victory Ln.','31 Granola Dr.','8005053111');
 -- Brady's Theatre
-INSERT INTO staff VALUES ('153647453','Seb Vollmer','Cashier','163732568','1701 Spygate Dr.','4224537586');
-INSERT INTO staff VALUES ('765435434','Ryan Clark','Concessions','163732568','1701 Spygate Dr.','2285560965');
-INSERT INTO staff VALUES ('554647807','Brandon Lafell','Janitor','163732568','1701 Spygate Dr.','2281006710');
-INSERT INTO staff VALUES ('235264574','Danny Amendola','Screens Operator','163732568','1701 Spygate Dr.','2257779091');
-INSERT INTO staff VALUES ('657534521','Julian Edelman','Party Host','163732568','1701 Spygate Dr.','2267815111');
-INSERT INTO staff VALUES ('325262626','Chandler Jones','Web Admin','163732568','1701 Spygate Dr.','2267053090');
-INSERT INTO staff VALUES ('174241235','Rob Ninkovich','Security','163732568','1701 Spygate Dr.','8005053111');
+INSERT INTO staff VALUES ('153647453','Seb Vollmer','Cashier','163732568','1701 Spygate Dr.','522 Ghost Dr.','4224537586');
+INSERT INTO staff VALUES ('765435434','Ryan Clark','Concessions','163732568','1701 Spygate Dr.','81 London Dr.','2285560965');
+INSERT INTO staff VALUES ('554647807','Brandon Lafell','Janitor','163732568','1701 Spygate Dr.','50 Peach Tree Ln.','2281006710');
+INSERT INTO staff VALUES ('235264574','Danny Amendola','Screens Operator','163732568','1701 Spygate Dr.','12 Flavor Ln.','2257779091');
+INSERT INTO staff VALUES ('657534521','Julian Edelman','Party Host','163732568','1701 Spygate Dr.','109 Weaving Ave.','2267815111');
+INSERT INTO staff VALUES ('325262626','Chandler Jones','Web Admin','163732568','1701 Spygate Dr.','44 Timmon Ave.','2267053090');
+INSERT INTO staff VALUES ('174241235','Rob Ninkovich','Security','163732568','1701 Spygate Dr.','35 Wright Pkwy.','8005053111');
+
 
 -- manager:
 INSERT INTO Manager_ VALUES ('302425250','Richard Sherman','667 Seashell Dr.','816 Fulton St.','2246730201');

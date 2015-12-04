@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class SQLConn {
@@ -38,6 +40,29 @@ public class SQLConn {
         }//end finally try    		
     }
     
+    public String getColNames(String tableName){
+        String colNames = "";
+        
+        try{
+            String sql = "SELECT * FROM "+tableName;
+            ResultSet tuples= stmt.executeQuery(sql); //fetches the entire table
+            //System.out.println("Fetched All Tuples of table: " + tableName);
+            int colCount = tuples.getMetaData().getColumnCount(); //amount of columns 
+            
+            for(int i = 1; i<=colCount;i++){
+                colNames = colNames +"   |   "+ tuples.getMetaData().getColumnName(i);
+            
+            }
+            
+        } catch(SQLException se){
+            //Handle errors for JDBC
+            System.out.println("Table Not Found!");
+            se.printStackTrace();
+        }
+        
+        return colNames;
+    }
+    
     public ArrayList<String> getAllTableValues(String tableName){
         try{
             String sql = "SELECT * FROM "+tableName;
@@ -60,15 +85,39 @@ public class SQLConn {
             ArrayList<String> strTuples = new ArrayList();
             while(tuples.next()){
                 String newTuple = new String();
-                for(int i=1; i<colCount ;i++){
-                   String newPart = (String) tuples.getObject(i);
-                   System.out.println(newPart);
-                   newTuple = newTuple + " " + newPart;
+                for(int i=1; i<=colCount ;i++){
+                   String colType = tuples.getMetaData().getColumnTypeName(i);
+                   //System.out.println("Coloumn Type: " + colType);
+                   String newPart;
+                   
+                   //formatter to deal with "date" types
+                   Format dateFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                   
+                   switch (colType){
+                        case "VARCHAR":
+                        case "VARCHAR2":
+                            newPart = tuples.getString(i);
+                            break;
+                        case "NUMBER":
+                            newPart = Integer.toString(tuples.getInt(i));
+                            break;
+                        case "DATE":
+                            newPart = dateFormatter.format(tuples.getDate(i));
+                            break;
+                        default:
+                            newPart = "colType: " + colType;
+                            
+                   } 
+                    
+                   //String newPart = (String) tuples.getObject(i);
+                   //System.out.println(newPart);
+                   newTuple = newTuple + "  |   " + newPart;
                 }
-                System.out.println(newTuple);
+                //System.out.println(newTuple);
                 strTuples.add(newTuple);
             }
             
+            System.out.println(strTuples);
             return strTuples;
         }catch(SQLException se){
             //Handle errors for JDBC

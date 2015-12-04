@@ -4,24 +4,45 @@ Author: Devanshu, Peter, Alex
 
 public class Runner {
     public static SQLConn sqlconn = new SQLConn();
-    public static Homepage homepage;
-    public static AdminPage admin;
+    public static AdminFrame admin;
+
+    //public static Homepage homepage;
+    //public static AdminPage admin;
+    //public static TestFrame tFrame = new TestFrame();
     
     
     
     public static void main(String[] args){
-        System.out.println("Homepage setting up");
-        homepage = new Homepage();
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(AdminFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        
+        
+        //System.out.println("Homepage setting up");
+        //homepage = new Homepage();
         
         System.out.println("Admin Page setting up");
-        admin = new AdminPage(sqlconn);
-        
-        //create new "pages" but hide them all
-        homepage.setVisible(false);
-        
-        //set visible
+        admin = new AdminFrame(sqlconn);
         admin.setVisible(true);
-        
         
     }
 }

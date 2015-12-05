@@ -8,7 +8,7 @@ address varchar(255) Primary key NOT NULL,
 zip int NOT NULL,
 screens int NOT NULL,
 owner_ varchar(32) NOT NULL,
-manager_ varchar(32) NOT NULL,		 -- FK to manager.ssn
+manager_ varchar(32) NOT NULL,		
 price double NOT NULL,
 sales int NOT NULL );
 
@@ -104,8 +104,8 @@ movie varchar(32) NOT NULL --fk to movie.title
 
 CREATE TABLE MovieThread(
 id_ int PRIMARY KEY NOT NULL,
-user_ varchar(32) NOT NULL, 					--fk to registerinfo.username
-movie varchar(32) NOT NULL,					--fk to movie.title
+user_ varchar(32) NOT NULL, 			--fk to registerinfo.username
+movie varchar(32) NOT NULL,			--fk to movie.title
 content_ varchar(2000) NOT NULL,
 time_ timestamp NOT NULL);
 
@@ -119,8 +119,8 @@ time_ timestamp NOT NULL
 
 CREATE TABLE TheatreThread(
 id_ int PRIMARY KEY NOT NULL,
-user_ varchar(32) NOT NULL, 					--fk to registerinfo.username
-theatre varchar(32) NOT NULL,					--fk to movie.title
+user_ varchar(32) NOT NULL, 			--fk to registerinfo.username
+theatre varchar(32) NOT NULL,			--fk to theatre.address
 content_ varchar(2000) NOT NULL,
 time_ timestamp NOT NULL);
 

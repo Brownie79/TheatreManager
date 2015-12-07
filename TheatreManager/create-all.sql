@@ -204,8 +204,6 @@ Insert into POSITIONS  values (6,'Screens Operator','Responsible for playing/ope
 Insert into POSITIONS  values (7,'Security','Responsible for keeping the theatre safe and secure',0);
 Insert into POSITIONS  values (8,'Web Admin','Responsible for updating/modifying the database and the movies at the theatre',2);
 
-
-
 /* CREDITCARD values */
 Insert into CREDITCARD values (1,'9999-9999-9999-9999',to_date('25-DEC-20','DD-MON-RR'),'NONE');
 Insert into CREDITCARD values (2,'5370-6550-0012-0988',to_date('08-DEC-17','DD-MON-RR'),'VISA');
@@ -350,7 +348,6 @@ Insert into STAR_  values (21,'Scream 4','Neve Campbell');
 Insert into STAR_  values (22,'The Human Centipede','Laurence Harvey');
 Insert into STAR_  values (23,'Earth','Animals');
 
-
 /* THEATRE values # */
 Insert into THEATRE  values (1,'667 Seashell Dr.',60610,10,'Russell Wilson','302425250',8,550);
 Insert into THEATRE  values (2,'28 Rush St.',60616,10,'Adrian Peterson','978133765',8,238);
@@ -358,7 +355,12 @@ Insert into THEATRE  values (3,'188 Victory Ln.',60651,12,'Peyton Manning','0903
 Insert into THEATRE  values (4,'1701 Spygate Dr.',60660,6,'Thomas Brady','163732568',14,109);
 
 /* MOVIEREVIEWS values */
-Insert into MOVIEREVIEWS values (1,'Scream 4','pkaner',0,0,'This movie scared the crap outta me. :OOOO');
+Insert into MOVIEREVIEWS values (1,'Scream 4','pkaner',3,2,'This movie scared the crap outta me. :OOOO');
+Insert into MOVIEREVIEWS values (2,'Elf','paulk',12,5,'Good family Movie. Very Funny!');
+Insert into MOVIEREVIEWS values (3,'Click','hkbryant',2,5,'Wasn''t impressed by some of the humor in this movie...');
+Insert into MOVIEREVIEWS values (4,'James Bond: Spectre','soccerislife19',15,1,'OMG this movie was awesome!!!');
+Insert into MOVIEREVIEWS values (5,'Hunger Games: Catching Fire','therealmj',3,3,'Actors were ok, but the storyline was great!');
+Insert into MOVIEREVIEWS values (6,'August Rush','pick6',7,9,'This movie is really boring. Don''t watch it!');
 
 /* THEATREREVIEWS */
 Insert into THEATREREVIEWS values (1,'1701 Spygate Dr.','pkaner',3,1,'Really overpriced and expensive, but you get what you pay for: luxury');
@@ -375,16 +377,10 @@ Insert into THEATREREVIEWS values (10,'667 Seashell Dr.','pkaner',3,0,'Decent mo
 /* THEATRETHREAD values */
 Insert into THEATRETHREAD  values (1,'paulk','1701 Spygate Dr.','Why is everything so darn expensive?',5);
 Insert into THEATRETHREAD  values (2,'pick6','28 Rush St.','WHERE ARE THE BATHROOMS?!??!',12);
-Insert into THEATRETHREAD  values (3,'pkaner','28 Rush St.','Does this place have bathrooms?',6);
-Insert into THEATRETHREAD  values (4,'pkaner','667 Seashell Dr.','When is the best time to visit the theatre? It''s always crowded.',3);
-Insert into THEATRETHREAD  values (5,'pkaner','188 Victory Ln.','Concessions? More Concessions?',5);
+Insert into THEATRETHREAD  values (3,'pkaner','28 Rush St.','How do I contact the manager?',6);
+Insert into THEATRETHREAD  values (4,'bbking13','667 Seashell Dr.','When is the best time to visit the theatre? It''s always crowded.',3);
+Insert into THEATRETHREAD  values (5,'therealmj','188 Victory Ln.','Concessions? More Concessions?',5);
 Insert into THEATRETHREAD  values (6,'soccerislife19','1701 Spygate Dr.','I deserve a refund! This place ripped me off!',9);
-Insert into THEATRETHREAD  values (7,'captaintoews','667 Seashell Dr.','How do I reserve a party room?',21);
-Insert into THEATRETHREAD  values (8,'bbking13','28 Rush St.','How do I apply for a job at your theatre?',16);
-Insert into THEATRETHREAD  values (9,'captaintoews','1701 Spygate Dr.','Do you offer discounts?',13);
-Insert into THEATRETHREAD  values (10,'hkbryant','188 Victory Ln.','How do I contact the manager?',12);
-Insert into THEATRETHREAD  values (11,'paulk','188 Victory Ln.','What are the hours of operation?',17);
-Insert into THEATRETHREAD  values (12,'therealmj','28 Rush St.','Mean employees and mischief: How do I contact the owner?',5);
 
 /* MOVIETHREAD values */
 INSERT INTO MOVIETHREAD VALUES(1,'bbking13','Creed','This movie was so inspirational. Was it for you?',24);
@@ -393,6 +389,31 @@ INSERT INTO MOVIETHREAD VALUES(3,'adidasrose','Concussion','Putting the movie in
 INSERT INTO MOVIETHREAD VALUES(4,'pkaner','August Rush','Is there going to be a sequel?',12);
 INSERT INTO MOVIETHREAD VALUES(5,'captaintoews','Click','What was your favorite scene from Click?',10);
 INSERT INTO MOVIETHREAD VALUES(6,'therealmj','Scream 4','What was your opinion on Scream 4?',6);
+
+/* MOVIERESPONSES values */
+INSERT INTO MOVIERESPONSES VALUES (1,5,'pkaner','When Adam Sandler first gets the remote, his reaction to it is hilarious.');
+INSERT INTO MOVIERESPONSES VALUES (2,5,'soccerislife19','I don''t really have a favorite scene, I loved it all!');
+INSERT INTO MOVIERESPONSES VALUES (3,5,'adidasrose','Yo Toews, what''s YOUR favorite scene?');
+INSERT INTO MOVIERESPONSES VALUES (4,5,'captaintoews','When he gets lost in time and becomes fat.');
+INSERT INTO MOVIERESPONSES VALUES (5,3,'pkaner','If you want to not get a concussion when playing a sport, WEAR A HELMET.');
+INSERT INTO MOVIERESPONSES VALUES (6,3,'adidasrose','Basketball players don''t wear helmets dude. No way.');
+INSERT INTO MOVIERESPONSES VALUES (7,1,'hkbryant','Yeah dude! I''m pumped to train for next baseball season.');
+INSERT INTO MOVIERESPONSES VALUES (8,2,'paulk','That was Lake Michigan. Aren''t you from Chicago?');
+INSERT INTO MOVIERESPONSES VALUES (9,2,'soccerislife19','Haha yes, but I wasn''t sure if that was our skyline.');
+INSERT INTO MOVIERESPONSES VALUES (10,2,'paulk','Yeah it was, just really hard to see lol.');
+INSERT INTO MOVIERESPONSES VALUES (11,4,'pick6','That was the most boring movie I''ve ever watched. I hope theres no sequel.');
+INSERT INTO MOVIERESPONSES VALUES (12,6,'bbking13','Eh, it was alright i guess. Not as scary as the previous ones.');
+
+/* THEATRERESPONSES values */
+INSERT INTO THEATRERESPONSES VALUES (1,6,'hkbryant','The owner is Tom Brady, he would do something like that...');
+INSERT INTO THEATRERESPONSES VALUES (2,6,'pick6','I can totally can relate! They told me I couldn''t see my movie unless I bought their food.');
+INSERT INTO THEATRERESPONSES VALUES (3,6,'paulk','That''s not cool at all. I''m not going to visit that theatre then.');
+INSERT INTO THEATRERESPONSES VALUES (4,1,'soccerislife19','Everything on that street is expensive. And plus it''s a luxury theatre.');
+INSERT INTO THEATRERESPONSES VALUES (5,1,'therealmj','You made the wrong theatre choice my friend.');
+INSERT INTO THEATRERESPONSES VALUES (6,2,'bbking13','I was wondering the same thing too.');
+INSERT INTO THEATRERESPONSES VALUES (7,3,'paulk','What happened?');
+INSERT INTO THEATRERESPONSES VALUES (8,3,'pkaner','A popcorn food fight started during the middle of the movie and I got drenched with soda.');
+INSERT INTO THEATRERESPONSES VALUES (9,3,'paulk','Uh oh. Yeah, his email is: reggiebush@theatre.com');
 
 /* 
  * CREATE AND ADD CONSTRAINTS

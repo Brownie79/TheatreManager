@@ -103,28 +103,26 @@ id int PRIMARY KEY NOT NULL,
 user_ varchar(32) NOT NULL, 			--fk to registerinfo.username
 movie varchar(32) NOT NULL,			--fk to movie.title
 content_ varchar(2000) NOT NULL,
-time_ timestamp NOT NULL);
+hits int NOT NULL);
 
 CREATE TABLE MovieResponses(
 id int PRIMARY KEY NOT NULL,
 threadId int NOT NULL,							-- FK TO movieThread.id
 user_ varchar(32) NOT NULL,					-- fk to registerInfo.username
-content_ varchar(2000),
-time_ timestamp NOT NULL);
+content_ varchar(2000));
 
 CREATE TABLE TheatreThread(
 id int PRIMARY KEY NOT NULL,
 user_ varchar(32) NOT NULL, 			--fk to registerinfo.username
 theatre varchar(32) NOT NULL,			--fk to theatre.address
 content_ varchar(2000) NOT NULL,
-time_ timestamp NOT NULL);
+hits int NOT NULL);
 
 CREATE TABLE TheatreResponses(
 id int PRIMARY KEY NOT NULL,
 threadId int NOT NULL,							-- fk to theatreThread.id
 user_ varchar(32) NOT NULL,					-- fk to registerInfo.username
-content_ varchar(2000),
-time_ timestamp NOT NULL
+content_ varchar(2000)
 );
 
 --
@@ -359,6 +357,9 @@ Insert into THEATRE  values (2,'28 Rush St.',60616,10,'Adrian Peterson','9781337
 Insert into THEATRE  values (3,'188 Victory Ln.',60651,12,'Peyton Manning','090343658',10,380);
 Insert into THEATRE  values (4,'1701 Spygate Dr.',60660,6,'Thomas Brady','163732568',14,109);
 
+/* MOVIEREVIEWS values */
+Insert into MOVIEREVIEWS values (1,'Scream 4','pkaner',0,0,'This movie scared the crap outta me. :OOOO');
+
 /* THEATREREVIEWS */
 Insert into THEATREREVIEWS values (1,'1701 Spygate Dr.','pkaner',3,1,'Really overpriced and expensive, but you get what you pay for: luxury');
 Insert into THEATREREVIEWS values (2,'28 Rush St.','soccerislife19',2,2,'Poorly managed, really bad experience, would not recommend to a friend.');
@@ -372,18 +373,26 @@ Insert into THEATREREVIEWS values (9,'28 Rush St.','bbking13',6,1,'A food fight 
 Insert into THEATREREVIEWS values (10,'667 Seashell Dr.','pkaner',3,0,'Decent movie theatre. Has a good variety of movies.');
 
 /* THEATRETHREAD values */
-Insert into THEATRETHREAD  values (1,'paulk','1701 Spygate Dr.','Why is everything so darn expensive?',to_timestamp('10-DEC-15 07.15.15.942000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (2,'pick6','28 Rush St.','WHERE ARE THE BATHROOMS?!??!',to_timestamp('09-DEC-15 04.44.22.076000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (3,'pkaner','28 Rush St.','Does this place have bathrooms?',to_timestamp('07-DEC-15 11.11.36.902000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (4,'pkaner','667 Seashell Dr.','When is the best time to visit the theatre? It''s always crowded.',to_timestamp('16-DEC-15 03.08.00.301000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (5,'pkaner','188 Victory Ln.','Concessions? More Concessions?',to_timestamp('12-DEC-15 09.25.11.597000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (6,'soccerislife19','1701 Spygate Dr.','I deserve a refund! This place ripped me off!',to_timestamp('03-DEC-15 02.15.53.885000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (7,'captaintoews','667 Seashell Dr.','How do I reserve a party room?',to_timestamp('11-DEC-15 07.36.03.157000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (8,'bbking13','28 Rush St.','How do I apply for a job at your theatre?',to_timestamp('10-DEC-15 03.12.12.677000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (9,'captaintoews','1701 Spygate Dr.','Do you offer discounts?',to_timestamp('05-DEC-15 07.27.19.636000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (10,'hkbryant','188 Victory Ln.','How do I contact the manager?',to_timestamp('08-DEC-15 12.56.29.772000000 PM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (11,'paulk','188 Victory Ln.','What are the hours of operation?',to_timestamp('11-DEC-15 07.16.38.996000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
-Insert into THEATRETHREAD  values (12,'therealmj','28 Rush St.','Mean employees and mischief: How do I contact the owner?',to_timestamp('08-DEC-15 09.55.58.349000000 AM','DD-MON-RR HH.MI.SSXFF AM'));
+Insert into THEATRETHREAD  values (1,'paulk','1701 Spygate Dr.','Why is everything so darn expensive?',5);
+Insert into THEATRETHREAD  values (2,'pick6','28 Rush St.','WHERE ARE THE BATHROOMS?!??!',12);
+Insert into THEATRETHREAD  values (3,'pkaner','28 Rush St.','Does this place have bathrooms?',6);
+Insert into THEATRETHREAD  values (4,'pkaner','667 Seashell Dr.','When is the best time to visit the theatre? It''s always crowded.',3);
+Insert into THEATRETHREAD  values (5,'pkaner','188 Victory Ln.','Concessions? More Concessions?',5);
+Insert into THEATRETHREAD  values (6,'soccerislife19','1701 Spygate Dr.','I deserve a refund! This place ripped me off!',9);
+Insert into THEATRETHREAD  values (7,'captaintoews','667 Seashell Dr.','How do I reserve a party room?',21);
+Insert into THEATRETHREAD  values (8,'bbking13','28 Rush St.','How do I apply for a job at your theatre?',16);
+Insert into THEATRETHREAD  values (9,'captaintoews','1701 Spygate Dr.','Do you offer discounts?',13);
+Insert into THEATRETHREAD  values (10,'hkbryant','188 Victory Ln.','How do I contact the manager?',12);
+Insert into THEATRETHREAD  values (11,'paulk','188 Victory Ln.','What are the hours of operation?',17);
+Insert into THEATRETHREAD  values (12,'therealmj','28 Rush St.','Mean employees and mischief: How do I contact the owner?',5);
+
+/* MOVIETHREAD values */
+INSERT INTO MOVIETHREAD VALUES(1,'bbking13','Creed','This movie was so inspirational. Was it for you?',24);
+INSERT INTO MOVIETHREAD VALUES(2,'soccerislife19','Freddy vs Jason','Where did the lake scene get filmed, it looks really familiar?',14);
+INSERT INTO MOVIETHREAD VALUES(3,'adidasrose','Concussion','Putting the movie into a real perspective.',8);
+INSERT INTO MOVIETHREAD VALUES(4,'pkaner','August Rush','Is there going to be a sequel?',12);
+INSERT INTO MOVIETHREAD VALUES(5,'captaintoews','Click','What was your favorite scene from Click?',10);
+INSERT INTO MOVIETHREAD VALUES(6,'therealmj','Scream 4','What was your opinion on Scream 4?',6);
 
 /* 
  * CREATE AND ADD CONSTRAINTS

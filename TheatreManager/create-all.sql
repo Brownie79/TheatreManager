@@ -1,7 +1,7 @@
 /*
  * CREATE THE TABLES
  */
- 
+ --
 CREATE TABLE MovieTimes(
 id int PRIMARY KEY NOT NULL,
 theatre varchar(255) NOT NULL, -- fk to theatre.address
@@ -9,31 +9,31 @@ screen int NOT NULL,
 Movie varchar(255) NOT NULL, -- fk to movie.title
 date_ date NOT NULL,
 start_ varchar(6) NOT NULL); -- army time hour
-
+--
 CREATE TABLE Movie(
 id int NOT NULL,
 title varchar(32) PRIMARY KEY NOT NULL,
 movietype varchar(32),
 description varchar(2000),
 release date);
-
+--
 CREATE TABLE Star_(
 id int PRIMARY KEY NOT NULL,
 movie varchar(32) NOT NULL, -- fk to movie.title
 name_ varchar(64) NOT NULL);	
-
+--
 CREATE TABLE Director(
 id int NOT NULL,
 movie varchar(32) PRIMARY KEY NOT NULL, -- fk to movie.title
 name_ varchar(64));
-
+--
 CREATE TABLE Screen(
 id int PRIMARY KEY NOT NULL,
 theatre varchar(255) NOT NULL, -- FK TO THEATRE.ADDRESS
 screen int NOT NULL,
 cap int NOT NULL);
 
-
+--
 CREATE TABLE TheatreReviews(
 id int PRIMARY KEY NOT NULL, 
 theatre varchar(255) NOT NULL, --fk to theatre.address
@@ -41,7 +41,7 @@ Reviewer varchar(32) NOT NULL, --fk to registerinfo.username
 likes int,
 dislikes int,
 review varchar(2000));
-
+--
 CREATE TABLE MovieReviews(
 id int PRIMARY KEY NOT NULL,
 movie varchar(32) NOT NULL,			--fk to movie.title
@@ -52,21 +52,21 @@ review varchar(2000));
 
 --
 -- Membership
-
+--
 CREATE TABLE MemberType(
 id int NOT NULL,
 type_ varchar(16) PRIMARY KEY NOT NULL,
 description varchar(2000) NOT NULL,
 pointsRequired int NOT NULL,
 ptsperreview int NOT NULL);
-
+--
 CREATE TABLE creditCard(
 id int NOT NULL,
 ccnum varchar(19) PRIMARY KEY NOT NULL, --fk to user ccnum
 expDate date, 
 company varchar(16)
 );
-
+--
 CREATE TABLE User_(
 id int NOT NULL,
 email varchar(255) PRIMARY KEY NOT NULL,
@@ -75,12 +75,12 @@ phone varchar(10) NOT NULL,
 f_name varchar(32) NOT NULL,
 l_name varchar(32) NOT NULL,
 type_ varchar(16) NOT NULL); --fk to membertype.type
-
+--
 CREATE TABLE GuestInfo (
 id int NOT NULL,
 email varchar(255) PRIMARY KEY NOT NULL, 	--FK to user.email
 theatre varchar(255) NOT NULL);			--fk to theatre.address
-
+--
 CREATE TABLE registerInfo(
 id int NOT NULL,
 email varchar(255) PRIMARY KEY NOT NULL,	--fk to user.email
@@ -89,35 +89,35 @@ pass varchar(32) NOT NULL,
 address varchar(255) NOT NULL,
 points int NOT NULL,
 pointEarned int NOT NULL);
-
+--
 CREATE TABLE MovieHistory(
-id int NOT NULL,
+id int PRIMARY KEY NOT NULL,
 username varchar(32) NOT NULL, --	fk to registerinfo.username
 movie varchar(32) NOT NULL); --fk to movie.title
 
 --
 --Discussion Forum
-
+--
 CREATE TABLE MovieThread(
 id int PRIMARY KEY NOT NULL,
 user_ varchar(32) NOT NULL, 			--fk to registerinfo.username
 movie varchar(32) NOT NULL,			--fk to movie.title
 content_ varchar(2000) NOT NULL,
 hits int NOT NULL);
-
+--
 CREATE TABLE MovieResponses(
 id int PRIMARY KEY NOT NULL,
 threadId int NOT NULL,							-- FK TO movieThread.id
 user_ varchar(32) NOT NULL,					-- fk to registerInfo.username
 content_ varchar(2000));
-
+--
 CREATE TABLE TheatreThread(
 id int PRIMARY KEY NOT NULL,
 user_ varchar(32) NOT NULL, 			--fk to registerinfo.username
 theatre varchar(32) NOT NULL,			--fk to theatre.address
 content_ varchar(2000) NOT NULL,
 hits int NOT NULL);
-
+--
 CREATE TABLE TheatreResponses(
 id int PRIMARY KEY NOT NULL,
 threadId int NOT NULL,							-- fk to theatreThread.id
@@ -133,7 +133,7 @@ id int NOT NULL,
 type_ varchar(16) PRIMARY KEY NOT NULL,
 description varchar(2000),
 privileges_ int NOT NULL);
-
+--
 CREATE TABLE staff(
 id int NOT NULL,
 ssn varchar(9) PRIMARY KEY NOT NULL,
@@ -143,7 +143,7 @@ hiredBy varchar(32) NOT NULL,					--fk to manager.ssn
 location_ varchar(255) NOT NULL,				-- fk to theatre.address
 address varchar(255) NOT NULL,
 phone varchar(10) NOT NULL);
-
+--
 CREATE TABLE Manager_(
 id int NOT NULL,
 ssn varchar(9) PRIMARY KEY NOT NULL,
@@ -151,16 +151,16 @@ name_ varchar(32) NOT NULL,
 location_ varchar(255) NOT NULL,			--fk to theatre.address
 address varchar(255) NOT NULL,
 phone varchar(10) NOT NULL);
-
+--
 CREATE TABLE Schedule(
-id int NOT NULL,
+id int PRIMARY KEY NOT NULL,
 ssn varchar(9) NOT NULL,	--fk to staff.ssn
 date_ date NOT NULL,
 start_ varchar(6) NOT NULL, -- HOUR IN ARMY TIME 0-24hr
 end_ varchar(6) NOT NULL, -- HOUR IN ARMY TIME 0-24hr
 type_ varchar(32) NOT NULL,					--fk to position.type
 location_ varchar(255) NOT NULL);				--fk to theatre.address
-
+--
 CREATE TABLE Theatre(
 id int NOT NULL,
 address varchar(255) Primary key NOT NULL,

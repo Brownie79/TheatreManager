@@ -92,6 +92,12 @@ WHERE counter = (SELECT MAX(COUNT(UNIQUE MOVIE))
                  FROM MOVIETIMES
                  GROUP BY Theatre);
 				 
+-- Displays all the movies playing at 1701 Spygate Dr.
+SELECT DISTINCT Movie
+FROM Movietimes
+WHERE theatre = '1701 Spygate Dr.'
+ORDER BY Theatre ASC;
+
 /* #7. Display the theatre that has the most ticket sales. (WORKS) */
 SELECT ADDRESS, ZIP, OWNER_
 FROM (SELECT * FROM THEATRE ORDER BY SALES DESC)

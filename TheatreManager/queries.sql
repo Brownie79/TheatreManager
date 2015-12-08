@@ -1,6 +1,8 @@
 /* When a user purchases a ticket for a certain theatre, ADD the ticket value of the theatre
    to the total sales of the theatre. Just makes life a lot easier. */
    
+   /* Also, keep track of the current date and time on the java end */
+   
 -- AUTHORIZATION AND PRIVILEGES
 -- STILL UPDATING
 
@@ -96,7 +98,10 @@ FROM (SELECT * FROM THEATRE ORDER BY SALES DESC)
 WHERE ROWNUM = 1;
 
 /* #9.	Send an alert to the owner and manager if no employee with the job of security is scheduled to work tomorrow. */
--- Returns 0 when there are no Janitors (Alert is java side)
+-- Returns date in the form of: 2014-11-11 12:45:34.243
+SELECT GETDATE() AS CurrentDateTime;
+-- Returns 0 when there are no Janitors for (Alert is java side)
 SELECT COUNT(*)
 FROM SCHEDULE
-WHERE TYPE_ = 'Janitor';
+WHERE TYPE_ = 'Janitor'
+      AND DATE_ = '10-DEC-15'; -- tomorrow

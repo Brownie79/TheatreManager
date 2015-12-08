@@ -96,3 +96,7 @@ FROM (SELECT * FROM THEATRE ORDER BY SALES DESC)
 WHERE ROWNUM = 1;
 
 /* #9.	Send an alert to the owner and manager if no employee with the job of security is scheduled to work tomorrow. */
+-- Returns 0 when there are no Janitors (Alert is java side)
+SELECT COUNT(*)
+FROM SCHEDULE
+WHERE TYPE_ = 'Janitor';

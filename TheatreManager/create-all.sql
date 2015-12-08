@@ -18,7 +18,7 @@ description varchar(2000),
 release date);
 
 CREATE TABLE Star_(
-id int NOT NULL,
+id int PRIMARY KEY NOT NULL,
 movie varchar(32) NOT NULL, -- fk to movie.title
 name_ varchar(64) NOT NULL);	
 
@@ -28,7 +28,7 @@ movie varchar(32) PRIMARY KEY NOT NULL, -- fk to movie.title
 name_ varchar(64));
 
 CREATE TABLE Screen(
-id int NOT NULL,
+id int PRIMARY KEY NOT NULL,
 theatre varchar(255) NOT NULL, -- FK TO THEATRE.ADDRESS
 screen int NOT NULL,
 cap int NOT NULL);

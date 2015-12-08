@@ -3,12 +3,12 @@
  */
  
 CREATE TABLE MovieTimes(
-id int NOT NULL,
+id int PRIMARY KEY NOT NULL,
 theatre varchar(255) NOT NULL, -- fk to theatre.address
 screen int NOT NULL,
 Movie varchar(255) NOT NULL, -- fk to movie.title
 date_ date NOT NULL,
-start_ varchar(5) NOT NULL);
+start_ int NOT NULL); -- army time hour
 
 CREATE TABLE Movie(
 id int NOT NULL,
@@ -191,8 +191,8 @@ Insert into MANAGER_  values (3,'090343658','Aaron Wroggers','188 Victory Ln.','
 Insert into MANAGER_  values (4,'163732568','Bill Belichick','1701 Spygate Dr.','959 Pine St.','8003005283');
 
 /* GUESTINFO values */
-Insert into GUESTINFO values (1,'rangerrick@gmail.com',90210);
-Insert into GUESTINFO values (2,'hackerbot@usc.edu',60007);
+Insert into GUESTINFO values (1,'rangerrick@gmail.com',60616);
+Insert into GUESTINFO values (2,'tpolamalu@usc.edu',60660);
 
 /* POSITIONS values */
 Insert into POSITIONS  values (1,'Cashier','Cash Handling, Operates the Cash Register',0);
@@ -415,12 +415,129 @@ INSERT INTO THEATRERESPONSES VALUES (7,3,'paulk','What happened?');
 INSERT INTO THEATRERESPONSES VALUES (8,3,'pkaner','A popcorn food fight started during the middle of the movie and I got drenched with soda.');
 INSERT INTO THEATRERESPONSES VALUES (9,3,'paulk','Uh oh. Yeah, his email is: reggiebush@theatre.com');
 
+/* MovieHistory values */
+INSERT INTO MOVIEHISTORY VALUES (1,'pkaner','August Rush');
+INSERT INTO MOVIEHISTORY VALUES (2,'therealmj','August Rush');
+INSERT INTO MOVIEHISTORY VALUES (3,'pick6','August Rush');
+INSERT INTO MOVIEHISTORY VALUES (4,'captaintoews','Scream 4');
+INSERT INTO MOVIEHISTORY VALUES (5,'soccerislife19','Freddy vs Jason');
+INSERT INTO MOVIEHISTORY VALUES (6,'pkaner','Click');
+INSERT INTO MOVIEHISTORY VALUES (7,'soccerislife19','Click');
+INSERT INTO MOVIEHISTORY VALUES (8,'hkbryant','Concussion');
+INSERT INTO MOVIEHISTORY VALUES (9,'adidasrose','Concussion');
+INSERT INTO MOVIEHISTORY VALUES (10,'bbking13','Concussion');
+INSERT INTO MOVIEHISTORY VALUES (11,'paulk','James Bond: Spectre');
+INSERT INTO MOVIEHISTORY VALUES (12,'paulk','Elf');
+INSERT INTO MOVIEHISTORY VALUES (13,'pkaner','Elf');
+INSERT INTO MOVIEHISTORY VALUES (14,'therealmj','Concussion');
+INSERT INTO MOVIEHISTORY VALUES (15,'pick6','Concussion');
+INSERT INTO MOVIEHISTORY VALUES (16,'pkaner','The Martian');
+INSERT INTO MOVIEHISTORY VALUES (17,'flaminflave','James Bond: Spectre');
+INSERT INTO MOVIEHISTORY VALUES (18,'flaminflave','Little Boy');
+INSERT INTO MOVIEHISTORY VALUES (19,'pkaner','The Peanuts Movie');
+INSERT INTO MOVIEHISTORY VALUES (20,'captaintoews','Click');
+
+/* Screen values */
+INSERT INTO SCREEN VALUES (1,'667 Seashell Dr.',1,25);
+INSERT INTO SCREEN VALUES (2,'667 Seashell Dr.',2,25);
+INSERT INTO SCREEN VALUES (3,'667 Seashell Dr.',3,25);
+INSERT INTO SCREEN VALUES (4,'667 Seashell Dr.',4,25);
+INSERT INTO SCREEN VALUES (5,'667 Seashell Dr.',5,50);
+INSERT INTO SCREEN VALUES (6,'667 Seashell Dr.',6,50);
+INSERT INTO SCREEN VALUES (7,'667 Seashell Dr.',7,20);
+INSERT INTO SCREEN VALUES (8,'28 Rush St.',1,30);
+INSERT INTO SCREEN VALUES (9,'28 Rush St.',2,30);
+INSERT INTO SCREEN VALUES (10,'28 Rush St.',3,30);
+INSERT INTO SCREEN VALUES (11,'28 Rush St.',4,40);
+INSERT INTO SCREEN VALUES (12,'188 Victory Ln.',1,40);
+INSERT INTO SCREEN VALUES (13,'188 Victory Ln.',2,40);
+INSERT INTO SCREEN VALUES (14,'188 Victory Ln.',3,40);
+INSERT INTO SCREEN VALUES (15,'188 Victory Ln.',4,40);
+INSERT INTO SCREEN VALUES (16,'188 Victory Ln.',5,40);
+INSERT INTO SCREEN VALUES (17,'188 Victory Ln.',6,40);
+INSERT INTO SCREEN VALUES (18,'1701 Spygate Dr.',1,20);
+INSERT INTO SCREEN VALUES (19,'1701 Spygate Dr.',2,20);
+INSERT INTO SCREEN VALUES (20,'1701 Spygate Dr.',3,20);
+INSERT INTO SCREEN VALUES (21,'1701 Spygate Dr.',4,20);
+INSERT INTO SCREEN VALUES (22,'1701 Spygate Dr.',5,50);
+
+-- ALLOW AT LEAST 2 HOURS IN BETWEEN, THEATRE OPENS AT 12, so 12 WOULD BE THE IDEAL STARTING TIME
+-- NOTE: Last attribute is an integer (hour in army time: 0-24 hrs).
+/* MovieTimes */
+INSERT INTO MOVIETIMES VALUES (1,'667 Seashell Dr.',1,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12pm
+INSERT INTO MOVIETIMES VALUES (2,'667 Seashell Dr.',1,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2pm
+INSERT INTO MOVIETIMES VALUES (3,'667 Seashell Dr.',1,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4pm
+INSERT INTO MOVIETIMES VALUES (4,'667 Seashell Dr.',1,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6pm
+INSERT INTO MOVIETIMES VALUES (5,'667 Seashell Dr.',1,'Scream 4',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10pm
+INSERT INTO MOVIETIMES VALUES (6,'667 Seashell Dr.',2,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12pm
+INSERT INTO MOVIETIMES VALUES (7,'667 Seashell Dr.',2,'Scream 4',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4pm
+INSERT INTO MOVIETIMES VALUES (8,'667 Seashell Dr.',2,'Scream 4',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6pm
+INSERT INTO MOVIETIMES VALUES (9,'667 Seashell Dr.',2,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (10,'667 Seashell Dr.',3,'August Rush',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (11,'667 Seashell Dr.',3,'Scream 4',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (12,'667 Seashell Dr.',3,'August Rush',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (13,'667 Seashell Dr.',3,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (14,'667 Seashell Dr.',4,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (15,'667 Seashell Dr.',4,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (16,'667 Seashell Dr.',4,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (17,'667 Seashell Dr.',4,'August Rush',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (18,'667 Seashell Dr.',4,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (19,'667 Seashell Dr.',5,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (20,'667 Seashell Dr.',5,'The Martian',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (21,'667 Seashell Dr.',5,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (22,'667 Seashell Dr.',6,'The Martian',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (23,'667 Seashell Dr.',6,'The Martian',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (24,'667 Seashell Dr.',7,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (25,'667 Seashell Dr.',7,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (26,'28 Rush St.',1,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (27,'28 Rush St.',1,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (28,'28 Rush St.',1,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (29,'28 Rush St.',1,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (30,'28 Rush St.',2,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (31,'28 Rush St.',2,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (32,'28 Rush St.',2,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (33,'28 Rush St.',3,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (34,'28 Rush St.',3,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (35,'28 Rush St.',3,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (36,'28 Rush St.',3,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (37,'28 Rush St.',4,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (38,'28 Rush St.',4,'The Martian',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (39,'28 Rush St.',4,'The Martian',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (40,'188 Victory Ln.',1,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (41,'188 Victory Ln.',1,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (42,'188 Victory Ln.',1,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (43,'188 Victory Ln.',1,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (44,'188 Victory Ln.',2,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (45,'188 Victory Ln.',2,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (46,'188 Victory Ln.',2,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (47,'188 Victory Ln.',3,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (48,'188 Victory Ln.',3,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (49,'188 Victory Ln.',3,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (50,'188 Victory Ln.',4,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (51,'188 Victory Ln.',4,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),22); -- 10
+INSERT INTO MOVIETIMES VALUES (52,'1701 Spygate Dr.',1,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (53,'1701 Spygate Dr.',1,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (54,'1701 Spygate Dr.',1,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (55,'1701 Spygate Dr.',1,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+INSERT INTO MOVIETIMES VALUES (56,'1701 Spygate Dr.',1,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (57,'1701 Spygate Dr.',2,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (58,'1701 Spygate Dr.',2,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (59,'1701 Spygate Dr.',2,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (60,'1701 Spygate Dr.',2,'James Bond: Spectre',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (61,'1701 Spygate Dr.',3,'The Peanuts Movie',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (62,'1701 Spygate Dr.',3,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),14); -- 2
+INSERT INTO MOVIETIMES VALUES (63,'1701 Spygate Dr.',3,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (64,'1701 Spygate Dr.',3,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (65,'1701 Spygate Dr.',4,'Hunger Games: Mockingjay pt 2',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (66,'1701 Spygate Dr.',4,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),16); -- 4
+INSERT INTO MOVIETIMES VALUES (67,'1701 Spygate Dr.',4,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (68,'1701 Spygate Dr.',5,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),20); -- 8
+INSERT INTO MOVIETIMES VALUES (69,'1701 Spygate Dr.',5,'Little Boy',TO_DATE('2015-12-09', 'YYYY-MM-DD'),12); -- 12
+INSERT INTO MOVIETIMES VALUES (70,'1701 Spygate Dr.',5,'Concussion',TO_DATE('2015-12-09', 'YYYY-MM-DD'),18); -- 6
+
 /* 
  * CREATE AND ADD CONSTRAINTS
  */
-
-ALTER TABLE MovieTimes
-ADD PRIMARY KEY (theatre, screen);
 
 ALTER TABLE screen
 ADD PRIMARY KEY (theatre,screen);

@@ -83,7 +83,7 @@ WHERE counter = (SELECT MAX(COUNT(*))
                  FROM MOVIETIMES
                  GROUP BY Theatre);
 				 
--- This returns the theatre name as well as the total number of movies (Unique, and no repeats) 
+-- This returns the theatre name as well as the total number of movies, not showings (Unique, and no repeats) 
 SELECT Theatre, counter
 FROM (SELECT Theatre, COUNT(UNIQUE MOVIE) AS counter
       FROM MOVIETIMES

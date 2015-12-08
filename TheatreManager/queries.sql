@@ -59,7 +59,40 @@ Query #1:
 		// exit dialog box, throw an error, user has to enter a valid thread topic (either movie or theatre)
 	}
 
-/* *** #7. Display the theatre that has the most ticket sales *** */
+/* #2. Display the 3 most recent discussions/comments from all specific discussion threads
+	   NOTE: Also print out 'as a response to: '+content of the thread substring of 100 chars
+	   NOTE2: Most recent thread responses will come first.
+*/
+
+SELECT THREADID, USER_, CONTENT_
+FROM (SELECT * FROM THEATRERESPONSES ORDER BY ID DESC)
+WHERE ROWNUM <= 3;
+
+/* 
+ * #6. Display the theatre(s) that are showing most number of movies. (WORKS) 
+ *  
+ */
+ -- This returns the theatre name as well as the total number of movie showings
+SELECT Theatre, counter
+FROM (SELECT Theatre, COUNT(*) AS counter
+      FROM MOVIETIMES
+      GROUP BY Theatre)
+WHERE counter = (SELECT MAX(COUNT(*))
+                 FROM MOVIETIMES
+                 GROUP BY Theatre);
+				 
+-- This returns the theatre name as well as the total number of movies (Unique, and no repeats) 
+SELECT Theatre, counter
+FROM (SELECT Theatre, COUNT(UNIQUE MOVIE) AS counter
+      FROM MOVIETIMES
+      GROUP BY Theatre)
+WHERE counter = (SELECT MAX(COUNT(UNIQUE MOVIE))
+                 FROM MOVIETIMES
+                 GROUP BY Theatre);
+				 
+/* #7. Display the theatre that has the most ticket sales. (WORKS) */
 SELECT ADDRESS, ZIP, OWNER_
 FROM (SELECT * FROM THEATRE ORDER BY SALES DESC)
 WHERE ROWNUM = 1;
+
+/* #9.	Send an alert to the owner and manager if no employee with the job of security is scheduled to work tomorrow. */

@@ -89,6 +89,58 @@ where hits = (SELECT MAX(Hits)
                   union 
                   select content_, hits 
                   FROM theatrethread));
+/*
+ *#4. Display an alert to a registered user when his membership status has changed.
+ *
+ */
+CREATE TRIGGER updateMem
+AFTER UPDATE on registerinfo
+FOR each row
+DECLARE
+
+usermail varchar2(255);
+memType varchar2(8);
+silver int;
+gold int;
+platinum int;
+
+BEGIN
+  
+  SELECT pointsrequired INTO silver
+  FROM membertype
+  WHERE type_ = 'Silver';
+  SELECT pointsrequired INTO gold
+  FROM membertype
+  WHERE type_ = 'Gold';
+  SELECT pointsrequired INTO platinum
+  FROM membertype
+  WHERE type_ = 'Platinum';
+  SELECT email into usermail
+  FROM registerinfo
+  WHERE email = new.email;
+  
+  IF old.pointearned <> new.pointearned THEN
+    IF old.pointearned < platinum THEN
+      IF new.pointearned >= platinum THEN
+        memType := 'Platinum';
+      END IF;
+      IF old.pointearned < gold THEN
+        IF new.pointearned >= gold THEN
+          memType := 'Gold';
+      END IF;
+      IF old.pointearned < silver THEN
+        IF new.pointearned >= silver THEN
+          memType := 'Silver';
+        END IF;
+      END IF;
+    END IF;
+  END IF;
+  
+  UPDATE user_ 
+  SET type_ = memType
+  WHERE email = usermail; 
+  
+END;
 
 /*
  *#5. Display the registered guest who has contributed most comments.

@@ -28,7 +28,7 @@ movie varchar(32) PRIMARY KEY NOT NULL, -- fk to movie.title
 name_ varchar(64));
 --
 CREATE TABLE Screen(
-id int PRIMARY KEY NOT NULL,
+id int NOT NULL,
 theatre varchar(255) NOT NULL, -- FK TO THEATRE.ADDRESS
 screen int NOT NULL,
 cap int NOT NULL);
@@ -79,7 +79,7 @@ type_ varchar(16) NOT NULL); --fk to membertype.type
 CREATE TABLE GuestInfo (
 id int NOT NULL,
 email varchar(255) PRIMARY KEY NOT NULL, 	--FK to user.email
-theatre varchar(255) NOT NULL);			--fk to theatre.address
+zip int NOT NULL);
 --
 CREATE TABLE registerInfo(
 id int NOT NULL,
@@ -91,7 +91,7 @@ points int NOT NULL,
 pointEarned int NOT NULL);
 --
 CREATE TABLE MovieHistory(
-id int PRIMARY KEY NOT NULL,
+id int NOT NULL,
 username varchar(32) NOT NULL, --	fk to registerinfo.username
 movie varchar(32) NOT NULL); --fk to movie.title
 
@@ -153,7 +153,7 @@ address varchar(255) NOT NULL,
 phone varchar(10) NOT NULL);
 --
 CREATE TABLE Schedule(
-id int PRIMARY KEY NOT NULL,
+id int NOT NULL,
 ssn varchar(9) NOT NULL,	--fk to staff.ssn
 date_ date NOT NULL,
 start_ varchar(6) NOT NULL, -- HOUR IN ARMY TIME 0-24hr
@@ -166,11 +166,16 @@ id int NOT NULL,
 address varchar(255) Primary key NOT NULL,
 zip int NOT NULL,
 screens int NOT NULL,
-owner_ varchar(32) NOT NULL,
+owner_ varchar(9) NOT NULL,
 manager_ varchar(32) NOT NULL,		
 price int NOT NULL,
 sales int NOT NULL );
 
+CREATE TABLE Owner_(
+id int PRIMARY KEY NOT NULL,
+name varchar(32) NOT NULL,
+ssn varchar(9) NOT NULL 
+);
 /* 
  *  CREATE AND PUT IN DATA
  */
@@ -279,6 +284,11 @@ Insert into USER_ values (9,'paulie@sox.com','7700-1231-2342-1024','8007597422',
 Insert into USER_ values (10,'jjohnston@redstars.com','3100-9532-1402-2410','8471789020','Julie','Johnston','Platinum');
 Insert into USER_ values (11,'mjlegend@hotmail.com','3100-3210-4350-2432','8513036006','Michael','Jordan','Platinum');
 
+Insert into Owner_ values (1,'Russell Wilson','124215627');
+Insert into Owner_ values (2,'Adriang Peterson','552505844');
+Insert into Owner_ values (3,'Peyton Manning','675580002');
+Insert into Owner_ values (4,'Tom Brady','808123841');
+
 /* REGISTERINFO values */
 Insert into REGISTERINFO  values (1,'admin@theatremgr.com','admin','admin','watching you',777,777);
 Insert into REGISTERINFO  values (2,'kaner@blackhawks.com','pkaner','bruh','999 Thorne Ln.',10,10);
@@ -348,10 +358,10 @@ Insert into STAR_  values (22,'The Human Centipede','Laurence Harvey');
 Insert into STAR_  values (23,'Earth','Animals');
 
 /* THEATRE values # */
-Insert into THEATRE  values (1,'667 Seashell Dr.',60610,10,'Russell Wilson','302425250',8,550);
-Insert into THEATRE  values (2,'28 Rush St.',60616,10,'Adrian Peterson','978133765',8,238);
-Insert into THEATRE  values (3,'188 Victory Ln.',60651,12,'Peyton Manning','090343658',10,380);
-Insert into THEATRE  values (4,'1701 Spygate Dr.',60660,6,'Thomas Brady','163732568',14,109);
+Insert into THEATRE  values (1,'667 Seashell Dr.',60610,10,'124215627','302425250',8,550);
+Insert into THEATRE  values (2,'28 Rush St.',60616,10,'552505844','978133765',8,238);
+Insert into THEATRE  values (3,'188 Victory Ln.',60651,12,'675580002','090343658',10,380);
+Insert into THEATRE  values (4,'1701 Spygate Dr.',60660,6,'808123841','163732568',14,109);
 
 /* MOVIEREVIEWS values */
 Insert into MOVIEREVIEWS values (1,'Scream 4','pkaner',3,2,'This movie scared the crap outta me. :OOOO');
@@ -611,7 +621,7 @@ ADD FOREIGN KEY (ccnum) REFERENCES user_(ccnum);
 ALTER TABLE user_ 
 ADD FOREIGN KEY (type_) REFERENCES membertype(type_);
 
-ALTER TABLE registerinfo 
+ALTER TABLE registerinfo
 ADD FOREIGN KEY (email) REFERENCES user_(email);
 
 ALTER TABLE moviehistory 

@@ -68,6 +68,47 @@ SELECT THREADID, USER_, CONTENT_
 FROM (SELECT * FROM THEATRERESPONSES ORDER BY ID DESC)
 WHERE ROWNUM <= 3;
 
+/*
+ *#3. Display the least popular discussion thread in terms of visits and comments.
+ */
+SELECT content_, hits
+FROM(
+    Select content_, hits 
+    FROM moviethread 
+    union 
+    select content_, hits 
+    FROM theatrethread) 
+where hits = (SELECT MAX(Hits)
+              FROM(
+                  Select content_, hits 
+                  FROM moviethread 
+                  union 
+                  select content_, hits 
+                  FROM theatrethread));
+
+/*
+ *#5. Display the registered guest who has contributed most comments.
+ *
+ */
+SELECT user_, counter
+FROM
+	(SELECT user_, count(*) as counter
+	FROM(
+		SELECT user_, content_ 
+		FROM theatreresponses
+		union
+		select user_, content_
+		From movieresponses)
+		GROUP BY user_)
+where counter = (SELECT MAX(COUNT(*))
+                  FROM (SELECT user_, content_ 
+                  FROM theatreresponses
+                  union
+                  select user_, content_
+                  From movieresponses)
+                  GROUP BY user_
+                  );
+
 /* 
  * #6. Display the theatre(s) that are showing most number of movies. (WORKS) 
  *  

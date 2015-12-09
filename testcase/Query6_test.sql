@@ -1,7 +1,7 @@
 --6. Display the theatre(s) that are showing most number of movies.
 --Tests:
 
-INSERT INTO screen VALUES('theatre4', 1, 50,7);
+
 INSERT INTO movie VALUES('movie1','type1', 'movie descrip1', to_date('2015/11/03','yyyy/mm/dd'),1);
 INSERT INTO movie VALUES('movie2','type2', 'movie descrip2', to_date('2015/11/05','yyyy/mm/dd'),2);
 INSERT INTO movie VALUES('movie3','type3', 'movie descrip3', to_date('2015/11/13','yyyy/mm/dd'),3);

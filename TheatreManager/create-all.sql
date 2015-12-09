@@ -93,7 +93,8 @@ pointEarned int NOT NULL);
 CREATE TABLE MovieHistory(
 id int NOT NULL,
 username varchar(32) NOT NULL, --	fk to registerinfo.username
-movie varchar(32) NOT NULL); --fk to movie.title
+movie varchar(32) NOT NULL  --fk to movie.title
+); --
 
 --
 --Discussion Forum

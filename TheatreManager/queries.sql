@@ -65,7 +65,12 @@
 	   NOTE2: Most recent thread responses will come first.
 */
 
--- NOT COMPLETED YET!
+SELECT THREADID, USER_, CONTENT_
+FROM (SELECT * FROM (SELECT * FROM MOVIERESPONSES
+                     UNION
+                     SELECT * FROM THEATRERESPONSES)
+      ORDER BY ID ASC)
+WHERE ROWNUM <= 3;
 
 /*
  *#3. Display the least popular discussion thread in terms of visits and comments.

@@ -10,12 +10,11 @@
 -- STILL UPDATING
 
 -- QUERIES:
-=================================
-Query #1:
-=================================
-
-	// Have 2 Drop down boxes specifying entering the 'movie' or 'theatre' threads to see the 3 most recent comments
-	// The second drop down box showing all the threads
+---------------------------------------------------------------------------------------------
+/* #1. Display the 3 most recent discussions/comments from all specific discussion threads */
+---------------------------------------------------------------------------------------------
+	-- Have 2 Drop down boxes specifying entering the 'movie' or 'theatre' threads to see the 3 most recent comments
+	-- The second drop down box showing all the threads
 	
 	String newThreadtype; // set to movie when the drop down for movie is selected, set to theatre when the drop down for theatre is selected
 	int threadNum;
@@ -66,9 +65,7 @@ Query #1:
 	   NOTE2: Most recent thread responses will come first.
 */
 
-SELECT THREADID, USER_, CONTENT_
-FROM (SELECT * FROM THEATRERESPONSES ORDER BY ID DESC)
-WHERE ROWNUM <= 3;
+-- NOT COMPLETED YET!
 
 /*
  *#3. Display the least popular discussion thread in terms of visits and comments.

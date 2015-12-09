@@ -139,10 +139,24 @@ FROM Movietimes
 WHERE theatre = '1701 Spygate Dr.'
 ORDER BY Theatre ASC;
 
-/* #7. Display the theatre that has the most ticket sales. (WORKS) */
+/* #7. Display the theatre that has the most ticket sales.*/
 SELECT ADDRESS, ZIP, OWNER_
 FROM (SELECT * FROM THEATRE ORDER BY SALES DESC)
 WHERE ROWNUM = 1;
+
+/* #8. Display the list of all employees who are on duty on Monday on a specific theatre. Display also their jobs and time table. */
+-- Use Java code to obtain the next monday date. If it's monday, use the current date. Set the DATE_ = the date for next monday or current date
+-- Also, have the user specify the theatre location (drop down menu?)
+
+SELECT NAME_, newType, START_, END_
+FROM (SELECT NAME_, newType, newLocation, START_, END_, DATE_
+      FROM (SELECT TYPE_ as newType, location_ as newLocation, DATE_, START_, END_, SSN
+            FROM SCHEDULE) S1
+      INNER JOIN STAFF
+      ON S1.SSN = STAFF.SSN)
+WHERE newLocation = '28 Rush St.' -- The location is specified by the user
+      AND DATE_ = '14-DEC-15' -- next monday date or current date (in which case the current day is Monday)
+ORDER BY START_ ASC;
 
 /* #9.	Send an alert to the owner and manager if no employee with the job of security is scheduled to work tomorrow. */
 -- Returns date in the form of: 2014-11-11 12:45:34.243

@@ -1,6 +1,8 @@
 /* When a user purchases a ticket for a certain theatre, ADD the ticket value of the theatre
    to the total sales of the theatre. Just makes life a lot easier. */
    
+   /* Also, keep track of the current date and time on the java end */
+   
 -- AUTHORIZATION AND PRIVILEGES
 -- STILL UPDATING
 
@@ -122,7 +124,7 @@ WHERE counter = (SELECT MAX(COUNT(*))
                  FROM MOVIETIMES
                  GROUP BY Theatre);
 				 
--- This returns the theatre name as well as the total number of movies (Unique, and no repeats) 
+-- This returns the theatre name as well as the total number of movies, not showings (Unique, and no repeats) 
 SELECT Theatre, counter
 FROM (SELECT Theatre, COUNT(UNIQUE MOVIE) AS counter
       FROM MOVIETIMES
@@ -131,9 +133,22 @@ WHERE counter = (SELECT MAX(COUNT(UNIQUE MOVIE))
                  FROM MOVIETIMES
                  GROUP BY Theatre);
 				 
+-- Displays all the movies playing at 1701 Spygate Dr.
+SELECT DISTINCT Movie
+FROM Movietimes
+WHERE theatre = '1701 Spygate Dr.'
+ORDER BY Theatre ASC;
+
 /* #7. Display the theatre that has the most ticket sales. (WORKS) */
 SELECT ADDRESS, ZIP, OWNER_
 FROM (SELECT * FROM THEATRE ORDER BY SALES DESC)
 WHERE ROWNUM = 1;
 
 /* #9.	Send an alert to the owner and manager if no employee with the job of security is scheduled to work tomorrow. */
+-- Returns date in the form of: 2014-11-11 12:45:34.243
+SELECT GETDATE() AS CurrentDateTime;
+-- Returns 0 when there are no Janitors for (Alert is java side)
+SELECT COUNT(*)
+FROM SCHEDULE
+WHERE TYPE_ = 'Janitor'
+      AND DATE_ = '10-DEC-15'; -- tomorrow
